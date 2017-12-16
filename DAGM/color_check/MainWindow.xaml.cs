@@ -16,6 +16,9 @@ using System.Windows.Forms;
 using System.IO;
 using System.Runtime.InteropServices;
 
+
+using DAGM.solver;
+
 namespace DAGM
 {
     /// <summary>
@@ -50,6 +53,8 @@ namespace DAGM
         private void Load_Click(object sender, RoutedEventArgs e)
         {
             var dlg = new OpenFileDialog();
+            dlg.Filter = "png files (*.png)|*.png";    
+            dlg.Title = "Open Images";
 
             //Open the Pop-Up Window to select the file 
             if (dlg.ShowDialog() == System.Windows.Forms.DialogResult.OK)
@@ -82,15 +87,24 @@ namespace DAGM
         }
 
         private void CnnRun_Click(object sender, RoutedEventArgs e)
-        {      
-            if (!InputView.IsEmpty)
+        {
+
+            string mainInspectSettingPath = new Def().MainInspectSettingPath;
+
+            if (System.IO.Directory.Exists(mainInspectSettingPath))      // if there is the folder
             {
-                ResultView.DataContext = cnnResultView;
-                string[] result = cnnResultView.Run(InputView.ImgMat);
-                ClassNo.Text = result[0];
-                nDefect.Text = result[1];
-                FinalResult.Text = result[2];
-            }
+                if(Directory.EnumerateFileSystemEntries(mainInspectSettingPath).Any())   // if the folder isn't empty)
+                {
+                    if (!InputView.IsEmpty)
+                    {
+                        ResultView.DataContext = cnnResultView;
+                        string[] result = cnnResultView.Run(InputView.ImgMat);
+                        ClassNo.Text = result[0];
+                        nDefect.Text = result[1];
+                        FinalResult.Text = result[2];
+                    }
+                }
+            }            
 
         }
 

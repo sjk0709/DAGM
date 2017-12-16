@@ -45,14 +45,14 @@
                 <RowDefinition/>
             </Grid.RowDefinitions>
             <Label Content="Inspect Setting Name:" VerticalContentAlignment="Bottom"/>
-            <TextBox x:Name="tbInspectSettingName" Grid.Row="1" Margin="2" VerticalContentAlignment="Center"/>
+            <TextBox x:Name="TextBoxSaveSetting" Grid.Row="1" Margin="2" VerticalContentAlignment="Center"/>
         </Grid>
         <Grid Grid.Column="3" Grid.Row="3" Margin="5">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <Button x:Name="btnSaveSetting" Content="Save Setting" FontSize="20" Margin="3" />
+            <Button x:Name="ButtonSaveSetting" Content="Save Setting" FontSize="20" Margin="3" Click="ButtonSaveSetting_Click"/>
             <Button x:Name="btnCancel" Content="Cancel" FontSize="20" Grid.Column="1" Margin="3" Click="btnCancel_Click" />
         </Grid>
     </Grid>

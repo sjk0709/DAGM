@@ -28,30 +28,30 @@ namespace DAGM.solver_ui
         private Def _def = new Def();
         private Utils _utils = new Utils();        
 
-        private DAGMsettingDataSet _dagmSettingDataSet = null;
+        private ModelSetting _modelSetting = null;
 
         public CreatCnnSetting()
         {
             InitializeComponent();
 
-            _dagmSettingDataSet = new DAGMsettingDataSet();
+            _modelSetting = new ModelSetting();
 
         }
 
         private void btnSaveSetting_Click(object sender, RoutedEventArgs e)
         {
             string fileName = "";
-            if (_utils.SaveXmlDialog(new Def().DAGMSettingPath, ref fileName))
+            if (_utils.SaveXmlDialog(new Def().modelSettingPath, ref fileName))
             {
-                _dagmSettingDataSet.ModelName = ModelName.Text;
-                _dagmSettingDataSet.FeatureWidth = FeatureWidth.Text;
-                _dagmSettingDataSet.FeatureHeight = FeatureHeight.Text;
+                _modelSetting.ModelName = ModelName.Text;
+                _modelSetting.FeatureWidth = FeatureWidth.Text;
+                _modelSetting.FeatureHeight = FeatureHeight.Text;
                 try
                 {
-                    XmlSerializer xmlSerializer = new XmlSerializer(typeof(DAGMsettingDataSet));
+                    XmlSerializer xmlSerializer = new XmlSerializer(typeof(ModelSetting));
                     using (StreamWriter streamWriter = new StreamWriter(fileName))
                     {
-                        xmlSerializer.Serialize(streamWriter, _dagmSettingDataSet);
+                        xmlSerializer.Serialize(streamWriter, _modelSetting);
                         // Cleanup
                         streamWriter.Close();
                     }                   

@@ -96,7 +96,8 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="solver\CnnSolver.cs" />
-    <Compile Include="solver\DAGMsettingDataSet.cs" />
+    <Compile Include="solver\DAGMsetting.cs" />
+    <Compile Include="solver\ModelSetting.cs" />
     <Compile Include="solver\Def.cs" />
     <Compile Include="solver\Utils.cs" />
     <Compile Include="solver_ui\CnnResultView.xaml.cs">

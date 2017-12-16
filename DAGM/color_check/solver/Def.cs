@@ -23,7 +23,7 @@ namespace DAGM.solver
         public string BasicSettingPath { get { return SettingPath + "BasicSettings\\"; } }
         public string SVMSettingPath { get { return SettingPath + "SVMSettings\\"; } }
         public string CNNSettingPath { get { return SettingPath + "CNNSettings\\"; } }
-        public string DAGMSettingPath { get { return SettingPath + "DAGMSettings\\"; } }
+        public string modelSettingPath { get { return SettingPath + "ModelSettings\\"; } }
         public string EnvironmentSettingPath { get { return SettingPath + "EnvironmentSettings\\EnvironmentSetting.xml"; } }
 
         public string CSV_Delimiter { get { return ","; } }

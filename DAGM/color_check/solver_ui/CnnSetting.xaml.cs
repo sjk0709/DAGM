@@ -30,6 +30,7 @@ namespace DAGM.solver_ui
     {
         private Def _def = new Def();
         private Utils _utils = new Utils();
+        private DAGMsetting _dagmSetting = null;
 
         public CnnSetting()
         {
@@ -41,7 +42,7 @@ namespace DAGM.solver_ui
 
         private void RefreshListBox()
         {
-            RefreshListBox(ListBoxSolverSetting, _def.DAGMSettingPath);
+            RefreshListBox(ListBoxSolverSetting, _def.modelSettingPath);
             
             //if (rbBasic.IsChecked == true)
             //{
@@ -74,28 +75,11 @@ namespace DAGM.solver_ui
             catch { }
         }
 
-        private string GetXMLFullPath(string rootPath, int idx)
-        {
-            string fullPath = "";
-
-            if (idx > -1)
-            {
-                DirectoryInfo dInfo = new DirectoryInfo(rootPath);
-                FileInfo[] Files = dInfo.GetFiles(Def.SavedSettingExtention);
-                if (Files.Count() > idx)
-                {
-                    fullPath = Files[idx].FullName;
-                }
-            }
-
-            return fullPath;
-        }
-
         private void UpdateInfoXML(Label lbl, TextBlock tb, string path, int selectedIdx)
         {
             try
             {
-                string fullPath = GetXMLFullPath(path, selectedIdx);
+                string fullPath = _utils.GetXMLFullPath(path, selectedIdx);
                 string xml = _utils.GetXML(fullPath);
                 tb.Text = xml;
             }
@@ -108,7 +92,7 @@ namespace DAGM.solver_ui
 
         private void ListBoxSolverSetting_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            UpdateInfoXML(LabelInfoSolverSetting, TextBlockSolverSetting, _def.DAGMSettingPath, ListBoxSolverSetting.SelectedIndex);
+            UpdateInfoXML(LabelInfoSolverSetting, TextBlockSolverSetting, _def.modelSettingPath, ListBoxSolverSetting.SelectedIndex);
         }
 
         private void btnCreateNewSetting_Click(object sender, RoutedEventArgs e)
@@ -116,7 +100,7 @@ namespace DAGM.solver_ui
             solver_ui.CreatCnnSetting createCnnSetting = new solver_ui.CreatCnnSetting();
             createCnnSetting.Owner = System.Windows.Application.Current.MainWindow;
             createCnnSetting.ShowDialog();
-            RefreshListBox(ListBoxSolverSetting, _def.DAGMSettingPath);
+            RefreshListBox(ListBoxSolverSetting, _def.modelSettingPath);
         }
 
 
@@ -126,6 +110,51 @@ namespace DAGM.solver_ui
             this.Close();
         }
 
-        
+
+        private void ConstSetting()
+        {
+            _dagmSetting = new DAGMsetting();
+
+            if (ListBoxSolverSetting.SelectedIndex > -1)
+            {
+                object setting;
+                Type type = typeof(ModelSetting);
+                _utils.LoadXML(type, out setting, _utils.GetXMLFullPath(_def.modelSettingPath, ListBoxSolverSetting.SelectedIndex));
+                _dagmSetting.ModelSetting = (ModelSetting)setting;
+            }        
+        }
+                
+
+        private void ButtonSaveSetting_Click(object sender, RoutedEventArgs e)
+        {
+            DirectoryInfo di = new DirectoryInfo(_def.MainInspectSettingPath);
+            if (di.Exists == false)
+            {
+                di.Create();
+            }
+
+            ConstSetting();
+            //if (TextBoxSaveSetting.Text == "" || TextBoxSaveSetting.Text == null)
+            //{
+            //    MessageBox.Show("Fill Inspect Setting Name");
+            //}
+            //else
+            {
+                try
+                {
+                    _utils.DeleteAllFilesInFolder(_def.MainInspectSettingPath);
+
+                    //string path = _def.MainInspectSettingPath + TextBoxSaveSetting.Text + ".xml";
+                    string path = _def.MainInspectSettingPath + "dagmSettings.xml";
+                    _utils.SaveXML(_dagmSetting, path);
+                    this.Close();
+                }
+                catch (Exception e1)
+                {
+                    Debug.WriteLine(e1);
+                    MessageBox.Show("Fail to save setting.");
+                }
+            }
+        }
     }
 }

@@ -8,8 +8,12 @@ using System.Threading.Tasks;
 using System.Runtime.InteropServices;
 using System.Drawing.Imaging;
 
+using System.IO;
+
 using OpenCvSharp;
 using OpenCvSharp.Extensions;
+
+
 
 namespace DAGM.solver
 {
@@ -22,20 +26,34 @@ namespace DAGM.solver
         public static extern void FreeConsole();
 
         [DllImport("tensorflowJK.dll")]
-        public static extern IntPtr runCnnBlockC1(int width, int height, IntPtr pImage);
+        public static extern IntPtr runCnnBlockC1(string graphName, int width, int height, IntPtr pImage);
 
         [DllImport("tensorflowJK.dll")]
         public static extern int ReleaseMemory(IntPtr ptr);
 
+        private Def _def = new Def();
+        private Utils _utils = new Utils();
+        private DAGMsetting _dagmSetting = null;
+
+        public CnnSolver()
+        {
+            _dagmSetting = new DAGMsetting();
+        }
+
+
         public CnnResult Run(Mat image)
         {
-            int nx = 10;
-            int ny = 3;
-            int nAreas = nx * ny;
-              
+            object setting;
+            Type type = typeof(DAGMsetting);
+            _utils.LoadXML(type, out setting, _utils.GetXMLFullPath(_def.MainInspectSettingPath, 0));
+            _dagmSetting = (DAGMsetting)setting;
+            ModelSetting dagmSettingDataSet = _dagmSetting.ModelSetting;
+            string graphName = dagmSettingDataSet.ModelName + dagmSettingDataSet.FeatureWidth + "x" + dagmSettingDataSet.FeatureHeight;
+            //Console.WriteLine("test : " + graphName);
+            
             IntPtr inputPtr = image.Ptr();
             
-            IntPtr resultPtr = runCnnBlockC1(image.Cols, image.Rows, inputPtr);
+            IntPtr resultPtr = runCnnBlockC1(graphName, image.Cols, image.Rows, inputPtr);
 
             int[] results = new int[2];           // result is allocated
             Marshal.Copy(resultPtr, results, 0, 2);   // copy resultPtr to result             
@@ -47,5 +65,6 @@ namespace DAGM.solver
 
             return result;
         }
+
     }
 }

@@ -17,6 +17,36 @@ namespace DAGM.solver
     public class Utils
     {
         private Def def = new Def();
+
+        // it deletes all files in a folder 
+        public void DeleteAllFilesInFolder(string folderPath)   // created by JK 
+        {
+            System.IO.DirectoryInfo di = new DirectoryInfo(folderPath);
+
+            foreach (FileInfo file in di.GetFiles())
+            {
+                file.Delete();
+            }
+        }
+
+        // it get an absolute Path of idx's file in folder
+        public string GetXMLFullPath(string rootPath, int idx)  // modifed by JK
+        {
+            string fullPath = "";
+
+            if (idx > -1)
+            {
+                DirectoryInfo dInfo = new DirectoryInfo(rootPath);
+                FileInfo[] Files = dInfo.GetFiles(Def.SavedSettingExtention);
+                if (Files.Count() > idx)
+                {
+                    fullPath = Files[idx].FullName;
+                }
+            }
+
+            return fullPath;
+        }
+
         public bool OpenFolder(ref string folderPath)
         {
             bool res = false;
