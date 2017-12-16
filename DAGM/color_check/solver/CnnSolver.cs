@@ -41,15 +41,15 @@ namespace DAGM.solver
         }
 
 
-        public CnnResult Run(Mat image)
+        public CnnResult Run(Mat image, string graphName)
         {
-            object setting;
-            Type type = typeof(DAGMsetting);
-            _utils.LoadXML(type, out setting, _utils.GetXMLFullPath(_def.MainInspectSettingPath, 0));
-            _dagmSetting = (DAGMsetting)setting;
-            ModelSetting dagmSettingDataSet = _dagmSetting.ModelSetting;
-            string graphName = dagmSettingDataSet.ModelName + dagmSettingDataSet.FeatureWidth + "x" + dagmSettingDataSet.FeatureHeight;
-            //Console.WriteLine("test : " + graphName);
+            //object setting;
+            //Type type = typeof(DAGMsetting);
+            //_utils.LoadXML(type, out setting, _utils.GetXMLFullPath(_def.MainInspectSettingPath, 0));
+            //_dagmSetting = (DAGMsetting)setting;
+            //ModelSetting modelSetting = _dagmSetting.ModelSetting;
+            //string graphName = modelSetting.ModelName + modelSetting.FeatureWidth + "x" + modelSetting.FeatureHeight;
+            ////Console.WriteLine("test : " + graphName);
             
             IntPtr inputPtr = image.Ptr();
             

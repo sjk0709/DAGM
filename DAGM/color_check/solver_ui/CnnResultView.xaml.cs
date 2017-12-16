@@ -20,6 +20,8 @@ using System.Drawing;
 using OpenCvSharp;
 using OpenCvSharp.Extensions;
 
+using DAGM.solver;
+
 namespace DAGM.solver_ui
 {
     /// <summary>
@@ -34,6 +36,9 @@ namespace DAGM.solver_ui
         [DllImport("Kernel32")]
         public static extern void FreeConsole();
 
+        private Def _def = new Def();
+        private Utils _utils = new Utils();
+        private DAGMsetting _dagmSetting = null;
 
         public CnnResultView()
         {
@@ -48,10 +53,16 @@ namespace DAGM.solver_ui
             //imgMat = Cv2.ImRead("S8_A_02NG_01_L190.bmp");
             //Cv2.ImShow("1", imgMat);
 
-            // parameters in CNN settings
-            
-            int featureWidth = 32;
-            int featureHeight = 32;
+            object setting;
+            Type type = typeof(DAGMsetting);
+            _utils.LoadXML(type, out setting, _utils.GetXMLFullPath(_def.MainInspectSettingPath, 0));
+            _dagmSetting = (DAGMsetting)setting;
+            ModelSetting modelSetting = _dagmSetting.ModelSetting;            
+            string graphName = modelSetting.ModelName + modelSetting.FeatureWidth + "x" + modelSetting.FeatureHeight;
+
+            // parameters in CNN settings           
+            int featureWidth = Convert.ToInt32(modelSetting.FeatureWidth);
+            int featureHeight = Convert.ToInt32(modelSetting.FeatureHeight);
             int width = image.Cols;
             int height = image.Rows;
             int nx = width/featureWidth;
@@ -60,7 +71,7 @@ namespace DAGM.solver_ui
 
             // solver
             solver.CnnSolver cnn = new solver.CnnSolver();
-            solver.CnnResult cnnResult = cnn.Run(image);
+            solver.CnnResult cnnResult = cnn.Run(image, graphName);
 
             Mat resultImage = Cv2.ImRead("result.png");
 
