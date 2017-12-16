@@ -1,0 +1,59 @@
+﻿<Window x:Class="DAGM.solver_ui.CnnSetting"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DAGM.solver_ui"
+        mc:Ignorable="d"
+        Title="CnnSetting" Height="736.527" Width="589.222">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="519*"/>
+            <RowDefinition Height="50*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+
+
+        <GroupBox x:Name="gbSolver" Header="Solver Settings" Grid.Column="0" Grid.ColumnSpan="2" Margin="5">
+            <Grid Margin="5">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="20"/>
+                    <RowDefinition Height="20"/>
+                    <RowDefinition Height="20"/>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="50"/>
+                </Grid.RowDefinitions>
+                <RadioButton x:Name="rbBasic" Content="Basic" />
+                <RadioButton x:Name="rbSVM" Content="SVM" Grid.Row="1"/>
+                <RadioButton x:Name="rbCNN" Content="CNN" Grid.Row="2" />
+                <ListBox Name="ListBoxSolverSetting" Padding="3" Grid.Row="3" SelectionChanged="ListBoxSolverSetting_SelectionChanged"/>
+                <Label x:Name="LabelInfoSolverSetting" Content="" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Row="4" Margin="3" VerticalContentAlignment="Center"/>
+                <ScrollViewer VerticalScrollBarVisibility="Visible" Grid.Row="5">
+                    <TextBlock x:Name="TextBlockSolverSetting" TextWrapping="Wrap" Grid.Row="5" Margin="3,0,3,3"/>
+                </ScrollViewer>
+                <Button x:Name="btnCreateNewSetting" Content="Create New Setting" Grid.Row="6" FontSize="16" Margin="3" Click="btnCreateNewSetting_Click"/>
+            </Grid>
+        </GroupBox>
+        <Grid Grid.Column="0" Grid.Row="3" Margin="5">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="28"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Label Content="Inspect Setting Name:" VerticalContentAlignment="Bottom"/>
+            <TextBox x:Name="tbInspectSettingName" Grid.Row="1" Margin="2" VerticalContentAlignment="Center"/>
+        </Grid>
+        <Grid Grid.Column="3" Grid.Row="3" Margin="5">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Button x:Name="btnSaveSetting" Content="Save Setting" FontSize="20" Margin="3" />
+            <Button x:Name="btnCancel" Content="Cancel" FontSize="20" Grid.Column="1" Margin="3" Click="btnCancel_Click" />
+        </Grid>
+    </Grid>
+</Window>
