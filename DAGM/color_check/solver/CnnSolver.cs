@@ -26,7 +26,7 @@ namespace DAGM.solver
         public static extern void FreeConsole();
 
         [DllImport("tensorflowJK.dll")]
-        public static extern IntPtr runCnnBlockC1(string graphName, int width, int height, IntPtr pImage);
+        public static extern IntPtr runCnnBlockC1(string graphName, string resultImagePath, int width, int height, IntPtr pImage);
 
         [DllImport("tensorflowJK.dll")]
         public static extern int ReleaseMemory(IntPtr ptr);
@@ -53,7 +53,7 @@ namespace DAGM.solver
             
             IntPtr inputPtr = image.Ptr();
             
-            IntPtr resultPtr = runCnnBlockC1(graphName, image.Cols, image.Rows, inputPtr);
+            IntPtr resultPtr = runCnnBlockC1(graphName, _def.ResultImagePath, image.Cols, image.Rows, inputPtr);
 
             int[] results = new int[2];           // result is allocated
             Marshal.Copy(resultPtr, results, 0, 2);   // copy resultPtr to result             

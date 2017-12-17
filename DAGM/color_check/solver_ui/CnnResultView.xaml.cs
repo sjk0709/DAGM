@@ -73,7 +73,7 @@ namespace DAGM.solver_ui
             solver.CnnSolver cnn = new solver.CnnSolver();
             solver.CnnResult cnnResult = cnn.Run(image, graphName);
 
-            Mat resultImage = Cv2.ImRead("result.png");
+            Mat resultImage = Cv2.ImRead(_def.ResultImagePath);
 
             int classNo = cnnResult.ClassNo;
             int nDefect = cnnResult.nDefect;

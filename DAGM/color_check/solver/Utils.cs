@@ -47,6 +47,45 @@ namespace DAGM.solver
             return fullPath;
         }
 
+        // it makes a folder simply
+        public bool makeFolder(string fullPath)         // created by JK 
+        {
+            DirectoryInfo di = new DirectoryInfo(fullPath);
+            if (di.Exists == false)
+            {
+                di.Create();
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public bool CreateFolder(string fullPath, string folderName, bool bOverwrite = true)
+        {
+            bool res = true;
+            string path = fullPath + "\\" + folderName;
+            DirectoryInfo di = new DirectoryInfo(fullPath + path);
+
+            if (bOverwrite)
+            {
+                if (di.Exists == false)
+                {
+                    di.Create();
+                }
+            }
+            else
+            {
+                if (di.Exists == false)
+                {
+                    res = false;
+                }
+            }
+
+            return res;
+        }
+
         public bool OpenFolder(ref string folderPath)
         {
             bool res = false;
@@ -101,29 +140,7 @@ namespace DAGM.solver
             return res;
         }
 
-        public bool CreateFolder(string fullPath, string folderName, bool bOverwrite = true)
-        {
-            bool res = true;
-            string path = fullPath + "\\" + folderName;
-            DirectoryInfo di = new DirectoryInfo(fullPath + path);
-
-            if (bOverwrite)
-            {
-                if (di.Exists == false)
-                {
-                    di.Create();
-                }
-            }
-            else
-            {
-                if (di.Exists == false)
-                {
-                    res = false;
-                }
-            }
-
-            return res;
-        }
+        
 
         public bool SaveBitmap(Bitmap bitmap, string name)
         {

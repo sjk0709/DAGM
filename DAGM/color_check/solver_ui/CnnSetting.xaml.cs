@@ -127,12 +127,8 @@ namespace DAGM.solver_ui
 
         private void ButtonSaveSetting_Click(object sender, RoutedEventArgs e)
         {
-            DirectoryInfo di = new DirectoryInfo(_def.MainInspectSettingPath);
-            if (di.Exists == false)
-            {
-                di.Create();
-            }
-
+            _utils.makeFolder(_def.MainInspectSettingPath);
+            
             ConstSetting();
             //if (TextBoxSaveSetting.Text == "" || TextBoxSaveSetting.Text == null)
             //{

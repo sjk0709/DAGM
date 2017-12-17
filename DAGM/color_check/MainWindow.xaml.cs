@@ -32,16 +32,24 @@ namespace DAGM
         [DllImport("Kernel32")]
         public static extern void FreeConsole();
 
+        private Def _def = new Def();
+        private Utils _utils = new Utils();
+  
         private camera.CameraView InputView;
         solver_ui.ResultMainView resultMain;
         private solver_ui.CnnResultView cnnResultView;
         private solver_ui.SolverSettings solverSettings;
 
+        
         public MainWindow()
         {
             InitializeComponent();
             AllocConsole();
-                        
+
+            _utils.makeFolder(new Def().SettingPath);
+            _utils.makeFolder(new Def().ResultPath);
+
+
             ResultView.DataContext = resultMain;
 
             InputView = new camera.CameraView();

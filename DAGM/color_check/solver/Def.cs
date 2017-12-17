@@ -17,14 +17,19 @@ namespace DAGM.solver
         public string StartupPath { get { return System.AppDomain.CurrentDomain.BaseDirectory; } }
         public string SettingPath { get { return StartupPath + "Settings\\"; } }
         public string MainInspectSettingPath { get { return SettingPath + "_Main\\"; } }
+        public string modelSettingPath { get { return SettingPath + "ModelSettings\\"; } }
+
         public string HueSettingPath { get { return SettingPath + "HueSettings\\"; } }
         public string SegmentSettingPath { get { return SettingPath + "SegmentSettings\\"; } }
         public string ScatterSettingPath { get { return SettingPath + "ScatterSettings\\"; } }
         public string BasicSettingPath { get { return SettingPath + "BasicSettings\\"; } }
         public string SVMSettingPath { get { return SettingPath + "SVMSettings\\"; } }
         public string CNNSettingPath { get { return SettingPath + "CNNSettings\\"; } }
-        public string modelSettingPath { get { return SettingPath + "ModelSettings\\"; } }
+        
         public string EnvironmentSettingPath { get { return SettingPath + "EnvironmentSettings\\EnvironmentSetting.xml"; } }
+
+        public string ResultPath { get { return StartupPath + "Results\\"; } }
+        public string ResultImagePath { get { return StartupPath + "Results\\result.png"; } }
 
         public string CSV_Delimiter { get { return ","; } }
         public string OutputCSVFileName { get { return "_Output.csv"; } }
