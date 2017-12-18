@@ -75,7 +75,7 @@
             <GroupBox Header="CNN" Height="90" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="2" FontSize="14" Foreground="White" FontWeight="Bold">
                 <StackPanel Orientation="Horizontal" >
                     <Button Name="CnnSetting" Content="Setting" Width="120" Margin="2 2 2 2" FontSize="16" Click="CnnSetting_Click" />
-                    <Button x:Name="CnnRun" Content="Run" Width="120" Margin="2 2 2 2" FontSize="16" Click="CnnRun_Click" />
+                    <Button x:Name="CnnRun" Content="Run" Width="120" Margin="2 2 2 2" FontSize="16" IsEnabled="False" Click="CnnRun_Click" />
                 </StackPanel>
             </GroupBox>
         </DockPanel>

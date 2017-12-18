@@ -87,6 +87,8 @@ namespace DAGM
                 ClassNo.Text = "None";
                 nDefect.Text = "None";
                 FinalResult.Text = "None";
+
+                CnnRun.IsEnabled = true;
             }
         }
 
@@ -100,23 +102,23 @@ namespace DAGM
         private void CnnRun_Click(object sender, RoutedEventArgs e)
         {
 
-            string mainInspectSettingPath = new Def().MainInspectSettingPath;
+            //string mainInspectSettingPath = new Def().MainInspectSettingPath;
+           // if (System.IO.Directory.Exists(mainInspectSettingPath))      // if there is the folder           
+               // if(Directory.EnumerateFileSystemEntries(mainInspectSettingPath).Any())   // if the folder isn't empty)
 
-            if (System.IO.Directory.Exists(mainInspectSettingPath))      // if there is the folder
+            try
             {
-                if(Directory.EnumerateFileSystemEntries(mainInspectSettingPath).Any())   // if the folder isn't empty)
-                {
-                    if (!InputView.IsEmpty)
-                    {
-                        ResultView.DataContext = cnnResultView;
-                        string[] result = cnnResultView.Run(InputView.ImgMat);
-                        ClassNo.Text = result[0];
-                        nDefect.Text = result[1];
-                        FinalResult.Text = result[2];
-                    }
-                }
-            }            
-
+                ResultView.DataContext = cnnResultView;
+                string[] result = cnnResultView.Run(InputView.ImgMat);
+                ClassNo.Text = result[0];
+                nDefect.Text = result[1];
+                FinalResult.Text = result[2];
+            }
+            catch (Exception e1)
+            {
+                //Debug.WriteLine(e1);
+                System.Windows.MessageBox.Show("Setting is empty.");
+            }
         }
 
         private void ManuFileExit_Click(object sender, RoutedEventArgs e)
