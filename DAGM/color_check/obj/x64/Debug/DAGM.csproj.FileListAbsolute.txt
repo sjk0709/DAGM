@@ -51,9 +51,7 @@ D:\my_projects\git_local_server\DAGM\DAGM\color_check\bin\x64\Debug\dagm.exe.con
 D:\my_projects\git_local_server\DAGM\DAGM\color_check\obj\x64\Debug\dagm.exe
 D:\my_projects\git_local_server\DAGM\DAGM\color_check\obj\x64\Debug\dagm.pdb
 D:\my_projects\git_local_server\DAGM\DAGM\color_check\bin\x64\Debug\dll\x86\OpenCvSharpExtern.dll
-D:\my_projects\git_local_server\DAGM\DAGM\color_check\bin\x64\Debug\dll\x86\opencv_ffmpeg320.dll
 D:\my_projects\git_local_server\DAGM\DAGM\color_check\bin\x64\Debug\dll\x64\OpenCvSharpExtern.dll
-D:\my_projects\git_local_server\DAGM\DAGM\color_check\bin\x64\Debug\dll\x64\opencv_ffmpeg320_64.dll
 D:\my_projects\git_local_server\DAGM\DAGM\color_check\bin\x64\Debug\dagm.exe
 D:\my_projects\git_local_server\DAGM\DAGM\color_check\bin\x64\Debug\dagm.pdb
 D:\my_projects\git_local_server\DAGM\DAGM\color_check\bin\x64\Debug\OpenCvSharp.Blob.dll
@@ -68,7 +66,6 @@ D:\my_projects\git_local_server\DAGM\DAGM\color_check\bin\x64\Debug\OpenCvSharp.
 D:\my_projects\git_local_server\DAGM\DAGM\color_check\bin\x64\Debug\OpenCvSharp.Extensions.xml
 D:\my_projects\git_local_server\DAGM\DAGM\color_check\bin\x64\Debug\OpenCvSharp.UserInterface.pdb
 D:\my_projects\git_local_server\DAGM\DAGM\color_check\bin\x64\Debug\OpenCvSharp.UserInterface.xml
-D:\my_projects\git_local_server\DAGM\DAGM\color_check\obj\x64\Debug\DAGM.csprojResolveAssemblyReference.cache
 D:\my_projects\git_local_server\DAGM\DAGM\color_check\obj\x64\Debug\OurStyle.baml
 D:\my_projects\git_local_server\DAGM\DAGM\color_check\obj\x64\Debug\solver_ui\CnnResultView.baml
 D:\my_projects\git_local_server\DAGM\DAGM\color_check\obj\x64\Debug\solver_ui\ResultMainView.baml
@@ -96,3 +93,6 @@ D:\my_projects\git_local_server\DAGM\DAGM\color_check\obj\x64\Debug\ui\SmartNume
 D:\my_projects\git_local_server\DAGM\DAGM\color_check\obj\x64\Debug\dagm.g.resources
 D:\my_projects\git_local_server\DAGM\DAGM\color_check\obj\x64\Debug\dagm.Properties.Resources.resources
 D:\my_projects\git_local_server\DAGM\DAGM\color_check\obj\x64\Debug\DAGM.csproj.GenerateResource.Cache
+D:\my_projects\git_local_server\DAGM\DAGM\color_check\bin\x64\Debug\dll\x86\opencv_ffmpeg331.dll
+D:\my_projects\git_local_server\DAGM\DAGM\color_check\bin\x64\Debug\dll\x64\opencv_ffmpeg331_64.dll
+D:\my_projects\git_local_server\DAGM\DAGM\color_check\obj\x64\Debug\DAGM.csprojResolveAssemblyReference.cache

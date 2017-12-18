@@ -46,6 +46,9 @@ namespace DAGM
             InitializeComponent();
             AllocConsole();
 
+            _utils.makeFolder(new Def().TensorflowPath);          
+            _utils.makeFolder(new Def().TensorflowGraphPath);
+
             _utils.makeFolder(new Def().SettingPath);
             _utils.makeFolder(new Def().ResultPath);
 

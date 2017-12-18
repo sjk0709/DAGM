@@ -9,7 +9,7 @@
             
             </summary>
         </member>
-        <member name="M:OpenCvSharp.Blob.BlobRenderer.PerformOne(OpenCvSharp.Blob.LabelData,OpenCvSharp.Blob.CvBlob,OpenCvSharp.IplImage,OpenCvSharp.IplImage,OpenCvSharp.Blob.RenderBlobsMode,OpenCvSharp.CvScalar,System.Double)">
+        <member name="M:OpenCvSharp.Blob.BlobRenderer.PerformOne(OpenCvSharp.Blob.LabelData,OpenCvSharp.Blob.CvBlob,OpenCvSharp.Mat,OpenCvSharp.Mat,OpenCvSharp.Blob.RenderBlobsMode,OpenCvSharp.Scalar,System.Double)">
             <summary>
             
             </summary>
@@ -21,7 +21,7 @@
             <param name="color"></param>
             <param name="alpha"></param>
         </member>
-        <member name="M:OpenCvSharp.Blob.BlobRenderer.PerformMany(OpenCvSharp.Blob.CvBlobs,OpenCvSharp.IplImage,OpenCvSharp.IplImage,OpenCvSharp.Blob.RenderBlobsMode,System.Double)">
+        <member name="M:OpenCvSharp.Blob.BlobRenderer.PerformMany(OpenCvSharp.Blob.CvBlobs,OpenCvSharp.Mat,OpenCvSharp.Mat,OpenCvSharp.Blob.RenderBlobsMode,System.Double)">
             <summary>
             
             </summary>
@@ -199,19 +199,13 @@
             </summary>
             <returns>Centroid.</returns>
         </member>
-        <member name="M:OpenCvSharp.Blob.CvBlob.SaveImage(System.String,OpenCvSharp.IplImage)">
+        <member name="M:OpenCvSharp.Blob.CvBlob.SaveImage(System.String,OpenCvSharp.Mat)">
             <summary>
             Save the image of a blob to a file.
             The function uses an image (that can be the original pre-processed image or a processed one, or even the result of cvRenderBlobs, for example) and a blob structure.
             Then the function saves a copy of the part of the image where the blob is.
             </summary>
             <param name="fileName">Name of the file.</param>
-            <param name="img">Image.</param>
-        </member>
-        <member name="M:OpenCvSharp.Blob.CvBlob.SetImageRoiToBlob(OpenCvSharp.IplImage)">
-            <summary>
-            Set the ROI of an image to the bounding box of a blob.
-            </summary>
             <param name="img">Image.</param>
         </member>
         <member name="M:OpenCvSharp.Blob.CvBlob.SetMoments">
@@ -225,14 +219,109 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="T:OpenCvSharp.Blob.CvBlobConst">
+            <summary>
+            Constants which are defined by cvblob
+            </summary>
+        </member>
+        <member name="F:OpenCvSharp.Blob.CvBlobConst.CV_BLOB_RENDER_COLOR">
+            <summary>
+            Render each blog with a different color.
+            </summary>
+        </member>
+        <member name="F:OpenCvSharp.Blob.CvBlobConst.CV_BLOB_RENDER_CENTROID">
+            <summary>
+            Render centroid.
+            </summary>
+        </member>
+        <member name="F:OpenCvSharp.Blob.CvBlobConst.CV_BLOB_RENDER_BOUNDING_BOX">
+            <summary>
+            Render bounding box.
+            </summary>
+        </member>
+        <member name="F:OpenCvSharp.Blob.CvBlobConst.CV_BLOB_RENDER_ANGLE">
+            <summary>
+            Render angle.
+            </summary>
+        </member>
+        <member name="F:OpenCvSharp.Blob.CvBlobConst.CV_BLOB_RENDER_TO_LOG">
+            <summary>
+             Print blob data to log out.
+            </summary>
+        </member>
+        <member name="F:OpenCvSharp.Blob.CvBlobConst.CV_BLOB_RENDER_TO_STD">
+            <summary>
+            Print blob data to std out.
+            </summary>
+        </member>
+        <member name="F:OpenCvSharp.Blob.CvBlobConst.CV_CHAINCODE_UP">
+            <summary>
+            Up.
+            </summary>
+        </member>
+        <member name="F:OpenCvSharp.Blob.CvBlobConst.CV_CHAINCODE_UP_RIGHT">
+            <summary>
+            Up and right.
+            </summary>
+        </member>
+        <member name="F:OpenCvSharp.Blob.CvBlobConst.CV_CHAINCODE_RIGHT">
+            <summary>
+            Right.
+            </summary>
+        </member>
+        <member name="F:OpenCvSharp.Blob.CvBlobConst.CV_CHAINCODE_DOWN_RIGHT">
+            <summary>
+            Down and right.
+            </summary>
+        </member>
+        <member name="F:OpenCvSharp.Blob.CvBlobConst.CV_CHAINCODE_DOWN">
+            <summary>
+            Down.
+            </summary>
+        </member>
+        <member name="F:OpenCvSharp.Blob.CvBlobConst.CV_CHAINCODE_DOWN_LEFT">
+            <summary>
+            Down and left.
+            </summary>
+        </member>
+        <member name="F:OpenCvSharp.Blob.CvBlobConst.CV_CHAINCODE_LEFT">
+            <summary>
+            Left.
+            </summary>
+        </member>
+        <member name="F:OpenCvSharp.Blob.CvBlobConst.CV_CHAINCODE_UP_LEFT">
+            <summary>
+            Up and left.
+            </summary>
+        </member>
+        <member name="F:OpenCvSharp.Blob.CvBlobConst.ChainCodeMoves">
+            <summary>
+            Move vectors of chain codes.
+            </summary>
+        </member>
+        <member name="F:OpenCvSharp.Blob.CvBlobConst.CV_TRACK_RENDER_ID">
+            <summary>
+            Print the ID of each track in the image.
+            </summary>
+        </member>
+        <member name="F:OpenCvSharp.Blob.CvBlobConst.CV_TRACK_RENDER_BOUNDING_BOX">
+            <summary>
+            Draw bounding box of each track in the image. \see cvRenderTracks
+            </summary>
+        </member>
+        <member name="F:OpenCvSharp.Blob.CvBlobConst.CV_TRACK_RENDER_TO_LOG">
+            <summary>
+            Print track info to log out.
+            </summary>
+        </member>
+        <member name="F:OpenCvSharp.Blob.CvBlobConst.CV_TRACK_RENDER_TO_STD">
+            <summary>
+            Print track info to log out.
+            </summary>
+        </member>
         <member name="T:OpenCvSharp.Blob.CvBlobLib">
             <summary>
             Functions of cvblob library
-            </summary>
-        </member>
-        <member name="F:OpenCvSharp.Blob.CvBlobLib.DepthLabel">
-            <summary>
-            Size of a label in bits.
             </summary>
         </member>
         <member name="M:OpenCvSharp.Blob.CvBlobLib.CalcAngle(OpenCvSharp.Blob.CvBlob)">
@@ -303,7 +392,7 @@
             <param name="blobs">List of blobs.</param>
             <param name="label">Label to leave.</param>
         </member>
-        <member name="M:OpenCvSharp.Blob.CvBlobLib.FilterLabels(OpenCvSharp.Blob.CvBlobs,OpenCvSharp.IplImage)">
+        <member name="M:OpenCvSharp.Blob.CvBlobLib.FilterLabels(OpenCvSharp.Blob.CvBlobs,OpenCvSharp.Mat)">
             <summary>
             Draw a binary image with the blobs that have been given. (cvFilterLabels)
             </summary>
@@ -333,7 +422,7 @@
             <param name="blobs">List of blobs.</param>
             <returns>The largest blob.</returns>
         </member>
-        <member name="M:OpenCvSharp.Blob.CvBlobLib.Label(OpenCvSharp.IplImage,OpenCvSharp.Blob.CvBlobs)">
+        <member name="M:OpenCvSharp.Blob.CvBlobLib.Label(OpenCvSharp.Mat,OpenCvSharp.Blob.CvBlobs)">
             <summary>
             Label the connected parts of a binary image. (cvLabel)
             </summary>
@@ -341,7 +430,7 @@
             <param name="blobs">List of blobs.</param>
             <returns>Number of pixels that has been labeled.</returns>
         </member>
-        <member name="M:OpenCvSharp.Blob.CvBlobLib.BlobMeanColor(OpenCvSharp.Blob.CvBlobs,OpenCvSharp.Blob.CvBlob,OpenCvSharp.IplImage)">
+        <member name="M:OpenCvSharp.Blob.CvBlobLib.BlobMeanColor(OpenCvSharp.Blob.CvBlobs,OpenCvSharp.Blob.CvBlob,OpenCvSharp.Mat)">
             <summary>
             Calculates mean color of a blob in an image.
             </summary>
@@ -358,7 +447,7 @@
             <param name="polygon">Contour (polygon type).</param>
             <returns>Convex hull.</returns>
         </member>
-        <member name="M:OpenCvSharp.Blob.CvBlobLib.RenderBlob(OpenCvSharp.Blob.LabelData,OpenCvSharp.Blob.CvBlob,OpenCvSharp.IplImage,OpenCvSharp.IplImage)">
+        <member name="M:OpenCvSharp.Blob.CvBlobLib.RenderBlob(OpenCvSharp.Blob.LabelData,OpenCvSharp.Blob.CvBlob,OpenCvSharp.Mat,OpenCvSharp.Mat)">
             <summary>
             Draws or prints information about a blob.
             </summary>
@@ -367,17 +456,7 @@
             <param name="imgSource">Input image (depth=IPL_DEPTH_8U and num. channels=3).</param>
             <param name="imgDest">Output image (depth=IPL_DEPTH_8U and num. channels=3).</param>
         </member>
-        <member name="M:OpenCvSharp.Blob.CvBlobLib.RenderBlob(OpenCvSharp.Blob.LabelData,OpenCvSharp.Blob.CvBlob,OpenCvSharp.IplImage,OpenCvSharp.IplImage,OpenCvSharp.Blob.RenderBlobsMode)">
-            <summary>
-            Draws or prints information about a blob.
-            </summary>
-            <param name="labels">Label data.</param>
-            <param name="blob">Blob.</param>
-            <param name="imgSource">Input image (depth=IPL_DEPTH_8U and num. channels=3).</param>
-            <param name="imgDest">Output image (depth=IPL_DEPTH_8U and num. channels=3).</param>
-            <param name="mode">Render mode. By default is CV_BLOB_RENDER_COLOR|CV_BLOB_RENDER_CENTROID|CV_BLOB_RENDER_BOUNDING_BOX|CV_BLOB_RENDER_ANGLE.</param>
-        </member>
-        <member name="M:OpenCvSharp.Blob.CvBlobLib.RenderBlob(OpenCvSharp.Blob.LabelData,OpenCvSharp.Blob.CvBlob,OpenCvSharp.IplImage,OpenCvSharp.IplImage,OpenCvSharp.Blob.RenderBlobsMode,OpenCvSharp.CvScalar)">
+        <member name="M:OpenCvSharp.Blob.CvBlobLib.RenderBlob(OpenCvSharp.Blob.LabelData,OpenCvSharp.Blob.CvBlob,OpenCvSharp.Mat,OpenCvSharp.Mat,OpenCvSharp.Blob.RenderBlobsMode)">
             <summary>
             Draws or prints information about a blob.
             </summary>
@@ -386,9 +465,8 @@
             <param name="imgSource">Input image (depth=IPL_DEPTH_8U and num. channels=3).</param>
             <param name="imgDest">Output image (depth=IPL_DEPTH_8U and num. channels=3).</param>
             <param name="mode">Render mode. By default is CV_BLOB_RENDER_COLOR|CV_BLOB_RENDER_CENTROID|CV_BLOB_RENDER_BOUNDING_BOX|CV_BLOB_RENDER_ANGLE.</param>
-            <param name="color">Color to render (if CV_BLOB_RENDER_COLOR is used).</param>
         </member>
-        <member name="M:OpenCvSharp.Blob.CvBlobLib.RenderBlob(OpenCvSharp.Blob.LabelData,OpenCvSharp.Blob.CvBlob,OpenCvSharp.IplImage,OpenCvSharp.IplImage,OpenCvSharp.Blob.RenderBlobsMode,OpenCvSharp.CvScalar,System.Double)">
+        <member name="M:OpenCvSharp.Blob.CvBlobLib.RenderBlob(OpenCvSharp.Blob.LabelData,OpenCvSharp.Blob.CvBlob,OpenCvSharp.Mat,OpenCvSharp.Mat,OpenCvSharp.Blob.RenderBlobsMode,OpenCvSharp.Scalar,System.Double)">
             <summary>
             Draws or prints information about a blob.
             </summary>
@@ -400,7 +478,7 @@
             <param name="color">Color to render (if CV_BLOB_RENDER_COLOR is used).</param>
             <param name="alpha">If mode CV_BLOB_RENDER_COLOR is used. 1.0 indicates opaque and 0.0 translucent (1.0 by default).</param>
         </member>
-        <member name="M:OpenCvSharp.Blob.CvBlobLib.RenderBlobs(OpenCvSharp.Blob.CvBlobs,OpenCvSharp.IplImage,OpenCvSharp.IplImage)">
+        <member name="M:OpenCvSharp.Blob.CvBlobLib.RenderBlobs(OpenCvSharp.Blob.CvBlobs,OpenCvSharp.Mat,OpenCvSharp.Mat)">
             <summary>
             Draws or prints information about blobs. (cvRenderBlobs)
             </summary>
@@ -408,16 +486,7 @@
             <param name="imgSource">Input image (depth=IPL_DEPTH_8U and num. channels=3).</param>
             <param name="imgDest">Output image (depth=IPL_DEPTH_8U and num. channels=3).</param>
         </member>
-        <member name="M:OpenCvSharp.Blob.CvBlobLib.RenderBlobs(OpenCvSharp.Blob.CvBlobs,OpenCvSharp.IplImage,OpenCvSharp.IplImage,OpenCvSharp.Blob.RenderBlobsMode)">
-            <summary>
-            Draws or prints information about blobs. (cvRenderBlobs)
-            </summary>
-            <param name="blobs">List of blobs.</param>
-            <param name="imgSource">Input image (depth=IPL_DEPTH_8U and num. channels=3).</param>
-            <param name="imgDest">Output image (depth=IPL_DEPTH_8U and num. channels=3).</param>
-            <param name="mode">Render mode. By default is CV_BLOB_RENDER_COLOR|CV_BLOB_RENDER_CENTROID|CV_BLOB_RENDER_BOUNDING_BOX|CV_BLOB_RENDER_ANGLE.</param>
-        </member>
-        <member name="M:OpenCvSharp.Blob.CvBlobLib.RenderBlobs(OpenCvSharp.Blob.CvBlobs,OpenCvSharp.IplImage,OpenCvSharp.IplImage,OpenCvSharp.Blob.RenderBlobsMode,System.Double)">
+        <member name="M:OpenCvSharp.Blob.CvBlobLib.RenderBlobs(OpenCvSharp.Blob.CvBlobs,OpenCvSharp.Mat,OpenCvSharp.Mat,OpenCvSharp.Blob.RenderBlobsMode,System.Double)">
             <summary>
             Draws or prints information about blobs. (cvRenderBlobs)
             </summary>
@@ -427,14 +496,14 @@
             <param name="mode">Render mode. By default is CV_BLOB_RENDER_COLOR|CV_BLOB_RENDER_CENTROID|CV_BLOB_RENDER_BOUNDING_BOX|CV_BLOB_RENDER_ANGLE.</param>
             <param name="alpha">If mode CV_BLOB_RENDER_COLOR is used. 1.0 indicates opaque and 0.0 translucent (1.0 by default).</param>
         </member>
-        <member name="M:OpenCvSharp.Blob.CvBlobLib.RenderContourChainCode(OpenCvSharp.Blob.CvContourChainCode,OpenCvSharp.IplImage)">
+        <member name="M:OpenCvSharp.Blob.CvBlobLib.RenderContourChainCode(OpenCvSharp.Blob.CvContourChainCode,OpenCvSharp.Mat)">
             <summary>
             Draw a contour.
             </summary>
             <param name="contour"> Chain code contour.</param>
             <param name="img">Image to draw on.</param>
         </member>
-        <member name="M:OpenCvSharp.Blob.CvBlobLib.RenderContourChainCode(OpenCvSharp.Blob.CvContourChainCode,OpenCvSharp.IplImage,OpenCvSharp.CvScalar)">
+        <member name="M:OpenCvSharp.Blob.CvBlobLib.RenderContourChainCode(OpenCvSharp.Blob.CvContourChainCode,OpenCvSharp.Mat,OpenCvSharp.Scalar)">
             <summary>
             Draw a contour.
             </summary>
@@ -442,14 +511,14 @@
             <param name="img">Image to draw on.</param>
             <param name="color">Color to draw (default, white).</param>
         </member>
-        <member name="M:OpenCvSharp.Blob.CvBlobLib.RenderContourPolygon(OpenCvSharp.Blob.CvContourPolygon,OpenCvSharp.IplImage)">
+        <member name="M:OpenCvSharp.Blob.CvBlobLib.RenderContourPolygon(OpenCvSharp.Blob.CvContourPolygon,OpenCvSharp.Mat)">
             <summary>
             Draw a polygon.
             </summary>
             <param name="contour">Polygon contour.</param>
             <param name="img">Image to draw on.</param>
         </member>
-        <member name="M:OpenCvSharp.Blob.CvBlobLib.RenderContourPolygon(OpenCvSharp.Blob.CvContourPolygon,OpenCvSharp.IplImage,OpenCvSharp.CvScalar)">
+        <member name="M:OpenCvSharp.Blob.CvBlobLib.RenderContourPolygon(OpenCvSharp.Blob.CvContourPolygon,OpenCvSharp.Mat,OpenCvSharp.Scalar)">
             <summary>
             Draw a polygon.
             </summary>
@@ -457,7 +526,7 @@
             <param name="img">Image to draw on.</param>
             <param name="color">Color to draw (default, white).</param>
         </member>
-        <member name="M:OpenCvSharp.Blob.CvBlobLib.RenderTracks(OpenCvSharp.Blob.CvTracks,OpenCvSharp.IplImage,OpenCvSharp.IplImage)">
+        <member name="M:OpenCvSharp.Blob.CvBlobLib.RenderTracks(OpenCvSharp.Blob.CvTracks,OpenCvSharp.Mat,OpenCvSharp.Mat)">
             <summary>
             Prints tracks information.
             </summary>
@@ -465,7 +534,7 @@
             <param name="imgSource">Input image (depth=IPL_DEPTH_8U and num. channels=3).</param>
             <param name="imgDest">Output image (depth=IPL_DEPTH_8U and num. channels=3).</param>
         </member>
-        <member name="M:OpenCvSharp.Blob.CvBlobLib.RenderTracks(OpenCvSharp.Blob.CvTracks,OpenCvSharp.IplImage,OpenCvSharp.IplImage,OpenCvSharp.Blob.RenderTracksMode)">
+        <member name="M:OpenCvSharp.Blob.CvBlobLib.RenderTracks(OpenCvSharp.Blob.CvTracks,OpenCvSharp.Mat,OpenCvSharp.Mat,OpenCvSharp.Blob.RenderTracksMode)">
             <summary>
             Prints tracks information.
             </summary>
@@ -474,7 +543,7 @@
             <param name="imgDest">Output image (depth=IPL_DEPTH_8U and num. channels=3).</param>
             <param name="mode">Render mode. By default is CV_TRACK_RENDER_ID.</param>
         </member>
-        <member name="M:OpenCvSharp.Blob.CvBlobLib.RenderTracks(OpenCvSharp.Blob.CvTracks,OpenCvSharp.IplImage,OpenCvSharp.IplImage,OpenCvSharp.Blob.RenderTracksMode,OpenCvSharp.CvFont)">
+        <member name="M:OpenCvSharp.Blob.CvBlobLib.RenderTracks(OpenCvSharp.Blob.CvTracks,OpenCvSharp.Mat,OpenCvSharp.Mat,OpenCvSharp.Blob.RenderTracksMode,OpenCvSharp.Scalar,OpenCvSharp.HersheyFonts,System.Double,System.Int32)">
             <summary>
             Prints tracks information.
             </summary>
@@ -482,22 +551,18 @@
             <param name="imgSource">Input image (depth=IPL_DEPTH_8U and num. channels=3).</param>
             <param name="imgDest">Output image (depth=IPL_DEPTH_8U and num. channels=3).</param>
             <param name="mode">Render mode. By default is CV_TRACK_RENDER_ID.</param>
-            <param name="font">OpenCV font for print on the image.</param>
+            <param name="textColor"></param>
+            <param name="fontFace"></param>
+            <param name="fontScale"></param>
+            <param name="thickness"></param>
         </member>
-        <member name="M:OpenCvSharp.Blob.CvBlobLib.SaveImageBlob(System.String,OpenCvSharp.IplImage,OpenCvSharp.Blob.CvBlob)">
+        <member name="M:OpenCvSharp.Blob.CvBlobLib.SaveImageBlob(System.String,OpenCvSharp.Mat,OpenCvSharp.Blob.CvBlob)">
             <summary>
             Save the image of a blob to a file.
             The function uses an image (that can be the original pre-processed image or a processed one, or even the result of cvRenderBlobs, for example) and a blob structure.
             Then the function saves a copy of the part of the image where the blob is.
             </summary>
             <param name="fileName">Name of the file.</param>
-            <param name="img">Image.</param>
-            <param name="blob">Blob.</param>
-        </member>
-        <member name="M:OpenCvSharp.Blob.CvBlobLib.SetImageRoItoBlob(OpenCvSharp.IplImage,OpenCvSharp.Blob.CvBlob)">
-            <summary>
-            Set the ROI of an image to the bounding box of a blob.
-            </summary>
             <param name="img">Image.</param>
             <param name="blob">Blob.</param>
         </member>
@@ -558,7 +623,7 @@
             <param name="polygon">Polygon contour.</param>
             <param name="fileName">File name.</param>
         </member>
-        <member name="M:OpenCvSharp.Blob.CvBlobLib.WriteContourPolygonSvg(OpenCvSharp.Blob.CvContourPolygon,System.String,OpenCvSharp.CvScalar,OpenCvSharp.CvScalar)">
+        <member name="M:OpenCvSharp.Blob.CvBlobLib.WriteContourPolygonSvg(OpenCvSharp.Blob.CvContourPolygon,System.String,OpenCvSharp.Scalar,OpenCvSharp.Scalar)">
             <summary>
             Write a contour to a SVG file.
             </summary>
@@ -592,13 +657,13 @@
             Constructor (copy)
             </summary>
         </member>
-        <member name="M:OpenCvSharp.Blob.CvBlobs.#ctor(OpenCvSharp.IplImage)">
+        <member name="M:OpenCvSharp.Blob.CvBlobs.#ctor(OpenCvSharp.Mat)">
             <summary>
             Constructor (init and cvLabel)
             </summary>
             <param name="img">Input binary image (depth=IPL_DEPTH_8U and nchannels=1).</param>
         </member>
-        <member name="M:OpenCvSharp.Blob.CvBlobs.BlobMeanColor(OpenCvSharp.Blob.CvBlob,OpenCvSharp.IplImage)">
+        <member name="M:OpenCvSharp.Blob.CvBlobs.BlobMeanColor(OpenCvSharp.Blob.CvBlob,OpenCvSharp.Mat)">
             <summary>
             Calculates mean color of a blob in an image. (cvBlobMeanColor)
             </summary>
@@ -620,7 +685,7 @@
             </summary>
             <param name="label">Label to leave.</param>
         </member>
-        <member name="M:OpenCvSharp.Blob.CvBlobs.FilterLabels(OpenCvSharp.IplImage)">
+        <member name="M:OpenCvSharp.Blob.CvBlobs.FilterLabels(OpenCvSharp.Mat)">
             <summary>
             Draw a binary image with the blobs that have been given. (cvFilterLabels)
             </summary>
@@ -646,21 +711,21 @@
             <param name="y"></param>
             <returns>Number of pixels that has been labeled.</returns>
         </member>
-        <member name="M:OpenCvSharp.Blob.CvBlobs.Label(OpenCvSharp.IplImage)">
+        <member name="M:OpenCvSharp.Blob.CvBlobs.Label(OpenCvSharp.Mat)">
             <summary>
             Label the connected parts of a binary image. (cvLabel)
             </summary>
             <param name="img">Input binary image (depth=IPL_DEPTH_8U and num. channels=1).</param>
             <returns>Number of pixels that has been labeled.</returns>
         </member>
-        <member name="M:OpenCvSharp.Blob.CvBlobs.RenderBlobs(OpenCvSharp.IplImage,OpenCvSharp.IplImage)">
+        <member name="M:OpenCvSharp.Blob.CvBlobs.RenderBlobs(OpenCvSharp.Mat,OpenCvSharp.Mat)">
             <summary>
             Draws or prints information about blobs. (cvRenderBlobs)
             </summary>
             <param name="imgSource">Input image (depth=IPL_DEPTH_8U and num. channels=3).</param>
             <param name="imgDest">Output image (depth=IPL_DEPTH_8U and num. channels=3).</param>
         </member>
-        <member name="M:OpenCvSharp.Blob.CvBlobs.RenderBlobs(OpenCvSharp.IplImage,OpenCvSharp.IplImage,OpenCvSharp.Blob.RenderBlobsMode)">
+        <member name="M:OpenCvSharp.Blob.CvBlobs.RenderBlobs(OpenCvSharp.Mat,OpenCvSharp.Mat,OpenCvSharp.Blob.RenderBlobsMode)">
             <summary>
             Draws or prints information about blobs. (cvRenderBlobs)
             </summary>
@@ -668,7 +733,7 @@
             <param name="imgDest">Output image (depth=IPL_DEPTH_8U and num. channels=3).</param>
             <param name="mode">Render mode. By default is CV_BLOB_RENDER_COLOR|CV_BLOB_RENDER_CENTROID|CV_BLOB_RENDER_BOUNDING_BOX|CV_BLOB_RENDER_ANGLE.</param>
         </member>
-        <member name="M:OpenCvSharp.Blob.CvBlobs.RenderBlobs(OpenCvSharp.IplImage,OpenCvSharp.IplImage,OpenCvSharp.Blob.RenderBlobsMode,System.Double)">
+        <member name="M:OpenCvSharp.Blob.CvBlobs.RenderBlobs(OpenCvSharp.Mat,OpenCvSharp.Mat,OpenCvSharp.Blob.RenderBlobsMode,System.Double)">
             <summary>
             Draws or prints information about blobs. (cvRenderBlobs)
             </summary>
@@ -791,13 +856,13 @@
             </summary>
             <returns>Perimeter of the contour.</returns>
         </member>
-        <member name="M:OpenCvSharp.Blob.CvContourChainCode.Render(OpenCvSharp.IplImage)">
+        <member name="M:OpenCvSharp.Blob.CvContourChainCode.Render(OpenCvSharp.Mat)">
             <summary>
             Draw a contour.
             </summary>
             <param name="img">Image to draw on.</param>
         </member>
-        <member name="M:OpenCvSharp.Blob.CvContourChainCode.Render(OpenCvSharp.IplImage,OpenCvSharp.CvScalar)">
+        <member name="M:OpenCvSharp.Blob.CvContourChainCode.Render(OpenCvSharp.Mat,OpenCvSharp.Scalar)">
             <summary>
             Draw a contour.
             </summary>
@@ -820,7 +885,7 @@
             
             </summary>
         </member>
-        <member name="M:OpenCvSharp.Blob.CvContourPolygon.#ctor(System.Collections.Generic.IEnumerable{OpenCvSharp.CvPoint})">
+        <member name="M:OpenCvSharp.Blob.CvContourPolygon.#ctor(System.Collections.Generic.IEnumerable{OpenCvSharp.Point})">
             <summary>
             
             </summary>
@@ -857,13 +922,13 @@
             </summary>
             <returns>Perimeter of the contour.</returns>
         </member>
-        <member name="M:OpenCvSharp.Blob.CvContourPolygon.Render(OpenCvSharp.IplImage)">
+        <member name="M:OpenCvSharp.Blob.CvContourPolygon.Render(OpenCvSharp.Mat)">
             <summary>
             Draw a polygon.
             </summary>
             <param name="img">Image to draw on.</param>
         </member>
-        <member name="M:OpenCvSharp.Blob.CvContourPolygon.Render(OpenCvSharp.IplImage,OpenCvSharp.CvScalar)">
+        <member name="M:OpenCvSharp.Blob.CvContourPolygon.Render(OpenCvSharp.Mat,OpenCvSharp.Scalar)">
             <summary>
             Draw a polygon.
             </summary>
@@ -897,13 +962,21 @@
             </summary>
             <param name="fileName">File name</param>
         </member>
-        <member name="M:OpenCvSharp.Blob.CvContourPolygon.WriteAsSvg(System.String,OpenCvSharp.CvScalar,OpenCvSharp.CvScalar)">
+        <member name="M:OpenCvSharp.Blob.CvContourPolygon.WriteAsSvg(System.String,OpenCvSharp.Scalar,OpenCvSharp.Scalar)">
             <summary>
             Write a contour to a SVG file.
             </summary>
             <param name="fileName">File name</param>
             <param name="stroke">Stroke color</param>
             <param name="fill">Fill color</param>
+        </member>
+        <member name="M:OpenCvSharp.Blob.CvContourPolygon.ToSvg(OpenCvSharp.Scalar,OpenCvSharp.Scalar)">
+            <summary>
+            
+            </summary>
+            <param name="stroke"></param>
+            <param name="fill"></param>
+            <returns></returns>
         </member>
         <member name="T:OpenCvSharp.Blob.CvTrack">
             <summary>
@@ -970,14 +1043,14 @@
             
             </summary>
         </member>
-        <member name="M:OpenCvSharp.Blob.CvTracks.Render(OpenCvSharp.IplImage,OpenCvSharp.IplImage)">
+        <member name="M:OpenCvSharp.Blob.CvTracks.Render(OpenCvSharp.Mat,OpenCvSharp.Mat)">
             <summary>
             Prints tracks information.
             </summary>
             <param name="imgSource">Input image (depth=IPL_DEPTH_8U and num. channels=3).</param>
             <param name="imgDest">Output image (depth=IPL_DEPTH_8U and num. channels=3).</param>
         </member>
-        <member name="M:OpenCvSharp.Blob.CvTracks.Render(OpenCvSharp.IplImage,OpenCvSharp.IplImage,OpenCvSharp.Blob.RenderTracksMode)">
+        <member name="M:OpenCvSharp.Blob.CvTracks.Render(OpenCvSharp.Mat,OpenCvSharp.Mat,OpenCvSharp.Blob.RenderTracksMode)">
             <summary>
             Prints tracks information.
             </summary>
@@ -985,14 +1058,17 @@
             <param name="imgDest">Output image (depth=IPL_DEPTH_8U and num. channels=3).</param>
             <param name="mode">Render mode. By default is CV_TRACK_RENDER_ID.</param>
         </member>
-        <member name="M:OpenCvSharp.Blob.CvTracks.Render(OpenCvSharp.IplImage,OpenCvSharp.IplImage,OpenCvSharp.Blob.RenderTracksMode,OpenCvSharp.CvFont)">
+        <member name="M:OpenCvSharp.Blob.CvTracks.Render(OpenCvSharp.Mat,OpenCvSharp.Mat,OpenCvSharp.Blob.RenderTracksMode,OpenCvSharp.Scalar,OpenCvSharp.HersheyFonts,System.Double,System.Int32)">
             <summary>
             Prints tracks information.
             </summary>
             <param name="imgSource">Input image (depth=IPL_DEPTH_8U and num. channels=3).</param>
             <param name="imgDest">Output image (depth=IPL_DEPTH_8U and num. channels=3).</param>
             <param name="mode">Render mode. By default is CV_TRACK_RENDER_ID.</param>
-            <param name="font">OpenCV font for print on the image.</param>
+            <param name="textColor"></param>
+            <param name="fontFace"></param>
+            <param name="fontScale"></param>
+            <param name="thickness"></param>
         </member>
         <member name="M:OpenCvSharp.Blob.CvTracks.ToString">
             <summary>
@@ -1010,9 +1086,9 @@
             Label value
             </summary>
         </member>
-        <member name="P:OpenCvSharp.Blob.LabelData.Roi">
+        <member name="P:OpenCvSharp.Blob.LabelData.Size">
             <summary>
-            Region of interest
+            Image sizw
             </summary>
         </member>
         <member name="P:OpenCvSharp.Blob.LabelData.Rows">
@@ -1032,21 +1108,13 @@
             <param name="rows"></param>
             <param name="cols"></param>
         </member>
-        <member name="M:OpenCvSharp.Blob.LabelData.#ctor(System.Int32,System.Int32,OpenCvSharp.CvRect)">
-            <summary>
-            
-            </summary>
-            <param name="rows"></param>
-            <param name="cols"></param>
-            <param name="roi"></param>
-        </member>
         <member name="M:OpenCvSharp.Blob.LabelData.#ctor(System.Int32[0:,0:])">
             <summary>
             
             </summary>
             <param name="values"></param>
         </member>
-        <member name="M:OpenCvSharp.Blob.LabelData.#ctor(System.Int32[0:,0:],OpenCvSharp.CvRect)">
+        <member name="M:OpenCvSharp.Blob.LabelData.#ctor(System.Int32[0:,0:],OpenCvSharp.Rect)">
             <summary>
             
             </summary>
@@ -1099,118 +1167,13 @@
             -1 == uint.MaxValue
             </summary>
         </member>
-        <member name="M:OpenCvSharp.Blob.Labeller.Perform(OpenCvSharp.IplImage,OpenCvSharp.Blob.CvBlobs)">
+        <member name="M:OpenCvSharp.Blob.Labeller.Perform(OpenCvSharp.Mat,OpenCvSharp.Blob.CvBlobs)">
             <summary>
             
             </summary>
             <param name="img"></param>
             <param name="blobs"></param>
             <returns></returns>
-        </member>
-        <member name="T:OpenCvSharp.Blob.CvBlobConst">
-            <summary>
-            Constants which are defined by cvblob
-            </summary>
-        </member>
-        <member name="F:OpenCvSharp.Blob.CvBlobConst.DepthLabel">
-            <summary>
-            Size of a label in bits.
-            </summary>
-        </member>
-        <member name="F:OpenCvSharp.Blob.CvBlobConst.CV_BLOB_RENDER_COLOR">
-            <summary>
-            Render each blog with a different color.
-            </summary>
-        </member>
-        <member name="F:OpenCvSharp.Blob.CvBlobConst.CV_BLOB_RENDER_CENTROID">
-            <summary>
-            Render centroid.
-            </summary>
-        </member>
-        <member name="F:OpenCvSharp.Blob.CvBlobConst.CV_BLOB_RENDER_BOUNDING_BOX">
-            <summary>
-            Render bounding box.
-            </summary>
-        </member>
-        <member name="F:OpenCvSharp.Blob.CvBlobConst.CV_BLOB_RENDER_ANGLE">
-            <summary>
-            Render angle.
-            </summary>
-        </member>
-        <member name="F:OpenCvSharp.Blob.CvBlobConst.CV_BLOB_RENDER_TO_LOG">
-            <summary>
-             Print blob data to log out.
-            </summary>
-        </member>
-        <member name="F:OpenCvSharp.Blob.CvBlobConst.CV_BLOB_RENDER_TO_STD">
-            <summary>
-            Print blob data to std out.
-            </summary>
-        </member>
-        <member name="F:OpenCvSharp.Blob.CvBlobConst.CV_CHAINCODE_UP">
-            <summary>
-            Up.
-            </summary>
-        </member>
-        <member name="F:OpenCvSharp.Blob.CvBlobConst.CV_CHAINCODE_UP_RIGHT">
-            <summary>
-            Up and right.
-            </summary>
-        </member>
-        <member name="F:OpenCvSharp.Blob.CvBlobConst.CV_CHAINCODE_RIGHT">
-            <summary>
-            Right.
-            </summary>
-        </member>
-        <member name="F:OpenCvSharp.Blob.CvBlobConst.CV_CHAINCODE_DOWN_RIGHT">
-            <summary>
-            Down and right.
-            </summary>
-        </member>
-        <member name="F:OpenCvSharp.Blob.CvBlobConst.CV_CHAINCODE_DOWN">
-            <summary>
-            Down.
-            </summary>
-        </member>
-        <member name="F:OpenCvSharp.Blob.CvBlobConst.CV_CHAINCODE_DOWN_LEFT">
-            <summary>
-            Down and left.
-            </summary>
-        </member>
-        <member name="F:OpenCvSharp.Blob.CvBlobConst.CV_CHAINCODE_LEFT">
-            <summary>
-            Left.
-            </summary>
-        </member>
-        <member name="F:OpenCvSharp.Blob.CvBlobConst.CV_CHAINCODE_UP_LEFT">
-            <summary>
-            Up and left.
-            </summary>
-        </member>
-        <member name="F:OpenCvSharp.Blob.CvBlobConst.ChainCodeMoves">
-            <summary>
-            Move vectors of chain codes.
-            </summary>
-        </member>
-        <member name="F:OpenCvSharp.Blob.CvBlobConst.CV_TRACK_RENDER_ID">
-            <summary>
-            Print the ID of each track in the image.
-            </summary>
-        </member>
-        <member name="F:OpenCvSharp.Blob.CvBlobConst.CV_TRACK_RENDER_BOUNDING_BOX">
-            <summary>
-            Draw bounding box of each track in the image. \see cvRenderTracks
-            </summary>
-        </member>
-        <member name="F:OpenCvSharp.Blob.CvBlobConst.CV_TRACK_RENDER_TO_LOG">
-            <summary>
-            Print track info to log out.
-            </summary>
-        </member>
-        <member name="F:OpenCvSharp.Blob.CvBlobConst.CV_TRACK_RENDER_TO_STD">
-            <summary>
-            Print track info to log out.
-            </summary>
         </member>
         <member name="T:OpenCvSharp.Blob.RenderBlobsMode">
             <summary>

@@ -5788,11 +5788,6 @@
             so that the smaller one is removed.The rate is relative to the smaller perimeter of the two markers(default 0.05).
             </summary>
         </member>
-        <member name="P:OpenCvSharp.Aruco.DetectorParameters.DoCornerRefinement">
-            <summary>
-            do subpixel refinement or not
-            </summary>
-        </member>
         <member name="P:OpenCvSharp.Aruco.DetectorParameters.CornerRefinementWinSize">
             <summary>
             window size for the corner refinement process (in pixels) (default 5).
@@ -10112,17 +10107,17 @@
         </member>
         <member name="P:OpenCvSharp.Mat.RowIndexer.Item(System.Int32)">
             <summary>
-            Creates a matrix header for the specified matrix column.
+            Creates a matrix header for the specified matrix row.
             </summary>
-            <param name="x">A 0-based column index.</param>
+            <param name="x">A 0-based row index.</param>
             <returns></returns>
         </member>
         <member name="P:OpenCvSharp.Mat.RowIndexer.Item(System.Int32,System.Int32)">
             <summary>
-            Creates a matrix header for the specified column span.
+            Creates a matrix header for the specified row span.
             </summary>
-            <param name="startCol">An inclusive 0-based start index of the column span.</param>
-            <param name="endCol">An exclusive 0-based ending index of the column span.</param>
+            <param name="startRow">An inclusive 0-based start index of the row span.</param>
+            <param name="endRow">An exclusive 0-based ending index of the row span.</param>
             <returns></returns>
         </member>
         <member name="P:OpenCvSharp.Mat.Row">
@@ -25319,6 +25314,254 @@
             <param name="callback"></param>
             <param name="userData">Not supported</param>
         </member>
+        <member name="T:OpenCvSharp.Dnn.CvDnn">
+            <summary>
+            cv::dnn functions
+            </summary>
+        </member>
+        <member name="M:OpenCvSharp.Dnn.CvDnn.ReadNetFromDarknet(System.String,System.String)">
+            <summary>
+            Reads a network model stored in Darknet (https://pjreddie.com/darknet/) model files.
+            </summary>
+            <param name="cfgFile">path to the .cfg file with text description of the network architecture.</param>
+            <param name="darknetModel">path to the .weights file with learned network.</param>
+            <returns>Network object that ready to do forward, throw an exception in failure cases.</returns>
+            <remarks>This is shortcut consisting from DarknetImporter and Net::populateNet calls.</remarks>
+        </member>
+        <member name="M:OpenCvSharp.Dnn.CvDnn.ReadNetFromCaffe(System.String,System.String)">
+            <summary>
+            Reads a network model stored in Caffe model files.
+            </summary>
+            <param name="prototxt"></param>
+            <param name="caffeModel"></param>
+            <returns></returns>
+            <remarks>This is shortcut consisting from createCaffeImporter and Net::populateNet calls.</remarks>
+        </member>
+        <member name="M:OpenCvSharp.Dnn.CvDnn.ReadNetFromTensorflow(System.String,System.String)">
+            <summary>
+            Reads a network model stored in Tensorflow model file.
+            </summary>
+            <param name="model"></param>
+            <param name="config"></param>
+            <returns></returns>
+            <remarks>This is shortcut consisting from createTensorflowImporter and Net::populateNet calls.</remarks>
+        </member>
+        <member name="M:OpenCvSharp.Dnn.CvDnn.ReadNetFromTorch(System.String,System.Boolean)">
+            <summary>
+            Reads a network model stored in Torch model file.
+            </summary>
+            <param name="model"></param>
+            <param name="isBinary"></param>
+            <returns></returns>
+            <remarks>This is shortcut consisting from createTorchImporter and Net::populateNet calls.</remarks>
+        </member>
+        <member name="M:OpenCvSharp.Dnn.CvDnn.ReadTorchBlob(System.String,System.Boolean)">
+            <summary>
+            Loads blob which was serialized as torch.Tensor object of Torch7 framework. 
+            </summary>
+            <param name="fileName"></param>
+            <param name="isBinary"></param>
+            <returns></returns>
+            <remarks>
+            This function has the same limitations as createTorchImporter().
+            </remarks>
+        </member>
+        <member name="M:OpenCvSharp.Dnn.CvDnn.BlobFromImage(OpenCvSharp.Mat,System.Double,OpenCvSharp.Size,OpenCvSharp.Scalar,System.Boolean,System.Boolean)">
+            <summary>
+            Creates 4-dimensional blob from image. Optionally resizes and crops @p image from center, 
+            subtract @p mean values, scales values by @p scalefactor, swap Blue and Red channels.
+            </summary>
+            <param name="image">input image (with 1- or 3-channels).</param>
+            <param name="scaleFactor">multiplier for @p image values.</param>
+            <param name="size">spatial size for output image</param>
+            <param name="mean">scalar with mean values which are subtracted from channels. Values are intended 
+            to be in (mean-R, mean-G, mean-B) order if @p image has BGR ordering and @p swapRB is true.</param>
+            <param name="swapRB">flag which indicates that swap first and last channels in 3-channel image is necessary.</param>
+            <param name="crop">flag which indicates whether image will be cropped after resize or not</param>
+            <returns>4-dimansional Mat with NCHW dimensions order.</returns>
+            <remarks>if @p crop is true, input image is resized so one side after resize is equal to corresponing 
+            dimension in @p size and another one is equal or larger.Then, crop from the center is performed. 
+            If @p crop is false, direct resize without cropping and preserving aspect ratio is performed.</remarks>
+        </member>
+        <member name="M:OpenCvSharp.Dnn.CvDnn.BlobFromImages(System.Collections.Generic.IEnumerable{OpenCvSharp.Mat},System.Double,OpenCvSharp.Size,OpenCvSharp.Scalar,System.Boolean,System.Boolean)">
+            <summary>
+            Creates 4-dimensional blob from series of images. Optionally resizes and 
+            crops @p images from center, subtract @p mean values, scales values by @p scalefactor, swap Blue and Red channels.
+            </summary>
+            <param name="images">input images (all with 1- or 3-channels).</param>
+            <param name="scaleFactor">multiplier for @p image values.</param>
+            <param name="size">spatial size for output image</param>
+            <param name="mean">scalar with mean values which are subtracted from channels. Values are intended 
+            to be in (mean-R, mean-G, mean-B) order if @p image has BGR ordering and @p swapRB is true.</param>
+            <param name="swapRB">flag which indicates that swap first and last channels in 3-channel image is necessary.</param>
+            <param name="crop">flag which indicates whether image will be cropped after resize or not</param>
+            <returns>4-dimansional Mat with NCHW dimensions order.</returns>
+            <remarks>if @p crop is true, input image is resized so one side after resize is equal to corresponing 
+            dimension in @p size and another one is equal or larger.Then, crop from the center is performed. 
+            If @p crop is false, direct resize without cropping and preserving aspect ratio is performed.</remarks>
+        </member>
+        <member name="M:OpenCvSharp.Dnn.CvDnn.ShrinkCaffeModel(System.String,System.String)">
+            <summary>
+            Convert all weights of Caffe network to half precision floating point.
+            </summary>
+            <param name="src">Path to origin model from Caffe framework contains single 
+            precision floating point weights(usually has `.caffemodel` extension).</param>
+            <param name="dst">Path to destination model with updated weights.</param>
+            <remarks>
+            Shrinked model has no origin float32 weights so it can't be used 
+            in origin Caffe framework anymore.However the structure of data 
+            is taken from NVidia's Caffe fork: https://github.com/NVIDIA/caffe.
+            So the resulting model may be used there.
+            </remarks>
+        </member>
+        <member name="T:OpenCvSharp.Dnn.Net">
+            <inheritdoc />
+            <summary>
+            This class allows to create and manipulate comprehensive artificial neural networks.
+            </summary>
+            <remarks>
+            Neural network is presented as directed acyclic graph(DAG), where vertices are Layer instances,
+            and edges specify relationships between layers inputs and outputs.
+            
+            Each network layer has unique integer id and unique string name inside its network.
+            LayerId can store either layer name or layer id.
+            This class supports reference counting of its instances, i.e.copies point to the same instance.
+            </remarks>
+        </member>
+        <member name="M:OpenCvSharp.Dnn.Net.#ctor">
+            <inheritdoc />
+            <summary>
+            Default constructor.
+            </summary>
+        </member>
+        <member name="M:OpenCvSharp.Dnn.Net.#ctor(System.IntPtr)">
+            <inheritdoc />
+            <summary>
+            </summary>
+        </member>
+        <member name="M:OpenCvSharp.Dnn.Net.DisposeUnmanaged">
+            <inheritdoc />
+            <summary>
+            </summary>
+        </member>
+        <member name="M:OpenCvSharp.Dnn.Net.ReadNetFromDarknet(System.String,System.String)">
+            <summary>
+            Reads a network model stored in Darknet (https://pjreddie.com/darknet/) model files.
+            </summary>
+            <param name="cfgFile">path to the .cfg file with text description of the network architecture.</param>
+            <param name="darknetModel">path to the .weights file with learned network.</param>
+            <returns>Network object that ready to do forward, throw an exception in failure cases.</returns>
+            <remarks>This is shortcut consisting from DarknetImporter and Net::populateNet calls.</remarks>
+        </member>
+        <member name="M:OpenCvSharp.Dnn.Net.ReadNetFromCaffe(System.String,System.String)">
+            <summary>
+            Reads a network model stored in Caffe model files.
+            </summary>
+            <param name="prototxt"></param>
+            <param name="caffeModel"></param>
+            <returns></returns>
+            <remarks>This is shortcut consisting from createCaffeImporter and Net::populateNet calls.</remarks>
+        </member>
+        <member name="M:OpenCvSharp.Dnn.Net.ReadNetFromTensorflow(System.String,System.String)">
+            <summary>
+            Reads a network model stored in Tensorflow model file.
+            </summary>
+            <param name="model"></param>
+            <param name="config"></param>
+            <returns></returns>
+            <remarks>This is shortcut consisting from createTensorflowImporter and Net::populateNet calls.</remarks>
+        </member>
+        <member name="M:OpenCvSharp.Dnn.Net.ReadNetFromTorch(System.String,System.Boolean)">
+            <summary>
+            Reads a network model stored in Torch model file.
+            </summary>
+            <param name="model"></param>
+            <param name="isBinary"></param>
+            <returns></returns>
+            <remarks>This is shortcut consisting from createTorchImporter and Net::populateNet calls.</remarks>
+        </member>
+        <member name="M:OpenCvSharp.Dnn.Net.Empty">
+            <summary>
+            Returns true if there are no layers in the network. 
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:OpenCvSharp.Dnn.Net.GetLayerId(System.String)">
+            <summary>
+            Converts string name of the layer to the integer identifier.
+            </summary>
+            <param name="layer"></param>
+            <returns>id of the layer, or -1 if the layer wasn't found.</returns>
+        </member>
+        <member name="M:OpenCvSharp.Dnn.Net.GetLayerNames">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:OpenCvSharp.Dnn.Net.Connect(System.String,System.String)">
+            <summary>
+            Connects output of the first layer to input of the second layer.
+            </summary>
+            <param name="outPin">descriptor of the first layer output.</param>
+            <param name="inpPin">descriptor of the second layer input.</param>
+        </member>
+        <member name="M:OpenCvSharp.Dnn.Net.Connect(System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Connects #@p outNum output of the first layer to #@p inNum input of the second layer.
+            </summary>
+            <param name="outLayerId">identifier of the first layer</param>
+            <param name="outNum">identifier of the second layer</param>
+            <param name="inpLayerId">number of the first layer output</param>
+            <param name="inpNum">number of the second layer input</param>
+        </member>
+        <member name="M:OpenCvSharp.Dnn.Net.SetInputsNames(System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            Sets outputs names of the network input pseudo layer.
+            </summary>
+            <param name="inputBlobNames"></param>
+            <remarks>
+            * Each net always has special own the network input pseudo layer with id=0.
+            * This layer stores the user blobs only and don't make any computations.
+            * In fact, this layer provides the only way to pass user data into the network.
+            * As any other layer, this layer can label its outputs and this function provides an easy way to do this.
+            </remarks>
+        </member>
+        <member name="M:OpenCvSharp.Dnn.Net.Forward(System.String)">
+            <summary>
+            Runs forward pass to compute output of layer with name @p outputName.
+            By default runs forward pass for the whole network.
+            </summary>
+            <param name="outputName">name for layer which output is needed to get</param>
+            <returns>blob for first output of specified layer.</returns>
+        </member>
+        <member name="M:OpenCvSharp.Dnn.Net.Forward(System.Collections.Generic.IEnumerable{OpenCvSharp.Mat},System.String)">
+            <summary>
+            Runs forward pass to compute output of layer with name @p outputName.
+            </summary>
+            <param name="outputBlobs">contains all output blobs for specified layer.</param>
+            <param name="outputName">name for layer which output is needed to get. 
+            If outputName is empty, runs forward pass for the whole network.</param>
+        </member>
+        <member name="M:OpenCvSharp.Dnn.Net.Forward(System.Collections.Generic.IEnumerable{OpenCvSharp.Mat},System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            Runs forward pass to compute outputs of layers listed in @p outBlobNames.
+            </summary>
+            <param name="outputBlobs">contains blobs for first outputs of specified layers.</param>
+            <param name="outBlobNames">names for layers which outputs are needed to get</param>
+        </member>
+        <member name="M:OpenCvSharp.Dnn.Net.SetInput(OpenCvSharp.Mat,System.String)">
+            <summary>
+            Sets the new value for the layer output blob
+            </summary>
+            <param name="blob">new blob.</param>
+            <param name="name">descriptor of the updating layer output blob.</param>
+            <remarks>
+            connect(String, String) to know format of the descriptor.
+            If updating blob is not empty then @p blob must have the same shape, 
+            because network reshaping is not implemented yet.
+            </remarks>
+        </member>
         <member name="T:OpenCvSharp.Face.BasicFaceRecognizer">
             <summary>
             base for two FaceRecognizer classes
@@ -25400,47 +25643,46 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="T:OpenCvSharp.Face.CvFace">
+        <member name="T:OpenCvSharp.Face.EigenFaceRecognizer">
+            <inheritdoc />
             <summary>
-            cv::face functions
+            Training and prediction must be done on grayscale images, use cvtColor to convert between the 
+            color spaces.
+            -   **THE EIGENFACES METHOD MAKES THE ASSUMPTION, THAT THE TRAINING AND TEST IMAGES ARE OF EQUAL SIZE.
+            ** (caps-lock, because I got so many mails asking for this). You have to make sure your 
+            input data has the correct shape, else a meaningful exception is thrown.Use resize to resize the images.
+            -   This model does not support updating.
             </summary>
         </member>
-        <member name="M:OpenCvSharp.Face.CvFace.CreateEigenFaceRecognizer(System.Int32,System.Double)">
+        <member name="F:OpenCvSharp.Face.EigenFaceRecognizer.recognizerPtr">
              <summary>
             
              </summary>
-             <param name="numComponents">The number of components (read: Eigenfaces) kept for this Principal Component Analysis. 
-             As a hint: There's no rule how many components (read: Eigenfaces) should be kept for good reconstruction capabilities. 
-             It is based on your input data, so experiment with the number. Keeping 80 components should almost always be sufficient.</param>
-             <param name="threshold">The threshold applied in the prediction.</param>
-             <returns></returns>
         </member>
-        <member name="M:OpenCvSharp.Face.CvFace.CreateFisherFaceRecognizer(System.Int32,System.Double)">
+        <member name="M:OpenCvSharp.Face.EigenFaceRecognizer.#ctor">
+            <inheritdoc />
              <summary>
-            
              </summary>
-             <param name="numComponents">The number of components (read: Fisherfaces) kept for this Linear Discriminant Analysis 
-             with the Fisherfaces criterion. It's useful to keep all components, that means the number of your classes c 
-             (read: subjects, persons you want to recognize). If you leave this at the default (0) or set it 
-             to a value less-equal 0 or greater (c-1), it will be set to the correct number (c-1) automatically.</param>
-             <param name="threshold">The threshold applied in the prediction. If the distance to the nearest neighbor 
-             is larger than the threshold, this method returns -1.</param>
-             <returns></returns>
         </member>
-        <member name="M:OpenCvSharp.Face.CvFace.CreateLBPHFaceRecognizer(System.Int32,System.Int32,System.Int32,System.Int32,System.Double)">
-             <summary>
-            
-             </summary>
-             <param name="radius">The radius used for building the Circular Local Binary Pattern. The greater the radius, the</param>
-             <param name="neighbors">The number of sample points to build a Circular Local Binary Pattern from. 
-             An appropriate value is to use `8` sample points.Keep in mind: the more sample points you include, the higher the computational cost.</param>
-             <param name="gridX">The number of cells in the horizontal direction, 8 is a common value used in publications. 
-             The more cells, the finer the grid, the higher the dimensionality of the resulting feature vector.</param>
-             <param name="gridY">The number of cells in the vertical direction, 8 is a common value used in publications. 
-             The more cells, the finer the grid, the higher the dimensionality of the resulting feature vector.</param>
-             <param name="threshold">The threshold applied in the prediction. If the distance to the nearest neighbor 
-             is larger than the threshold, this method returns -1.</param>
-             <returns></returns>
+        <member name="M:OpenCvSharp.Face.EigenFaceRecognizer.DisposeManaged">
+            <summary>
+            Releases managed resources
+            </summary>
+        </member>
+        <member name="M:OpenCvSharp.Face.EigenFaceRecognizer.Create(System.Int32,System.Double)">
+            <summary>
+            Training and prediction must be done on grayscale images, use cvtColor to convert between the 
+            color spaces.
+            -   **THE EIGENFACES METHOD MAKES THE ASSUMPTION, THAT THE TRAINING AND TEST IMAGES ARE OF EQUAL SIZE.
+            ** (caps-lock, because I got so many mails asking for this). You have to make sure your 
+            input data has the correct shape, else a meaningful exception is thrown.Use resize to resize the images.
+            -   This model does not support updating.
+            </summary>
+            <param name="numComponents"> The number of components (read: Eigenfaces) kept for this Principal Component Analysis. 
+            As a hint: There's no rule how many components (read: Eigenfaces) should be kept for good reconstruction capabilities. 
+            It is based on your input data, so experiment with the number. Keeping 80 components should almost always be sufficient.</param>
+            <param name="threshold">The threshold applied in the prediction.</param>
+            <returns></returns>
         </member>
         <member name="T:OpenCvSharp.Face.FaceRecognizer">
             <summary>
@@ -25466,44 +25708,8 @@
             </summary>
             <param name="ptr"></param>
         </member>
-        <member name="M:OpenCvSharp.Face.FaceRecognizer.CreateEigenFaceRecognizer(System.Int32,System.Double)">
-             <summary>
-            
-             </summary>
-             <param name="numComponents"> The number of components (read: Eigenfaces) kept for this Principal Component Analysis. 
-             As a hint: There's no rule how many components (read: Eigenfaces) should be kept for good reconstruction capabilities. 
-             It is based on your input data, so experiment with the number. Keeping 80 components should almost always be sufficient.</param>
-             <param name="threshold">The threshold applied in the prediction.</param>
-             <returns></returns>
-        </member>
-        <member name="M:OpenCvSharp.Face.FaceRecognizer.CreateFisherFaceRecognizer(System.Int32,System.Double)">
-             <summary>
-            
-             </summary>
-             <param name="numComponents">The number of components (read: Fisherfaces) kept for this Linear Discriminant Analysis 
-             with the Fisherfaces criterion. It's useful to keep all components, that means the number of your classes c 
-             (read: subjects, persons you want to recognize). If you leave this at the default (0) or set it 
-             to a value less-equal 0 or greater (c-1), it will be set to the correct number (c-1) automatically.</param>
-             <param name="threshold">The threshold applied in the prediction. If the distance to the nearest neighbor 
-             is larger than the threshold, this method returns -1.</param>
-             <returns></returns>
-        </member>
-        <member name="M:OpenCvSharp.Face.FaceRecognizer.CreateLBPHFaceRecognizer(System.Int32,System.Int32,System.Int32,System.Int32,System.Double)">
-             <summary>
-            
-             </summary>
-             <param name="radius">The radius used for building the Circular Local Binary Pattern. The greater the radius, the</param>
-             <param name="neighbors">The number of sample points to build a Circular Local Binary Pattern from. 
-             An appropriate value is to use `8` sample points.Keep in mind: the more sample points you include, the higher the computational cost.</param>
-             <param name="gridX">The number of cells in the horizontal direction, 8 is a common value used in publications. 
-             The more cells, the finer the grid, the higher the dimensionality of the resulting feature vector.</param>
-             <param name="gridY">The number of cells in the vertical direction, 8 is a common value used in publications. 
-             The more cells, the finer the grid, the higher the dimensionality of the resulting feature vector.</param>
-             <param name="threshold">The threshold applied in the prediction. If the distance to the nearest neighbor 
-             is larger than the threshold, this method returns -1.</param>
-             <returns></returns>
-        </member>
         <member name="M:OpenCvSharp.Face.FaceRecognizer.DisposeManaged">
+            <inheritdoc />
             <summary>
             Releases managed resources
             </summary>
@@ -25537,27 +25743,29 @@
             <param name="label"></param>
             <param name="confidence"></param>
         </member>
-        <member name="M:OpenCvSharp.Face.FaceRecognizer.Save(System.String)">
+        <member name="M:OpenCvSharp.Face.FaceRecognizer.Write(System.String)">
             <summary>
             Serializes this object to a given filename.
             </summary>
             <param name="fileName"></param>
         </member>
-        <member name="M:OpenCvSharp.Face.FaceRecognizer.Load(System.String)">
+        <member name="M:OpenCvSharp.Face.FaceRecognizer.Read(System.String)">
             <summary>
             Deserializes this object from a given filename.
             </summary>
             <param name="fileName"></param>
         </member>
-        <member name="M:OpenCvSharp.Face.FaceRecognizer.Save(OpenCvSharp.FileStorage)">
+        <member name="M:OpenCvSharp.Face.FaceRecognizer.Write(OpenCvSharp.FileStorage)">
+            <inheritdoc />
             <summary>
             Serializes this object to a given cv::FileStorage.
             </summary>
             <param name="fs"></param>
         </member>
-        <member name="M:OpenCvSharp.Face.FaceRecognizer.Load(OpenCvSharp.FileStorage)">
+        <member name="M:OpenCvSharp.Face.FaceRecognizer.Read(OpenCvSharp.FileNode)">
+            <inheritdoc />
             <summary>
-            Deserializes this object from a given cv::FileStorage.
+            Deserializes this object from a given cv::FileNode.
             </summary>
             <param name="fs"></param>
         </member>
@@ -25598,9 +25806,53 @@
             </summary>
             <param name="val"></param>
         </member>
-        <member name="T:OpenCvSharp.Face.LBPHFaceRecognizer">
+        <member name="T:OpenCvSharp.Face.FisherFaceRecognizer">
+            <inheritdoc />
             <summary>
+            Training and prediction must be done on grayscale images, use cvtColor to convert between the color spaces.
+            -   **THE FISHERFACES METHOD MAKES THE ASSUMPTION, THAT THE TRAINING AND TEST IMAGES ARE OF EQUAL SIZE.
+                ** (caps-lock, because I got so many mails asking for this). You have to make sure your input data 
+                  has the correct shape, else a meaningful exception is thrown.Use resize to resize the images.
+            -   This model does not support updating.
+            </summary>
+        </member>
+        <member name="F:OpenCvSharp.Face.FisherFaceRecognizer.recognizerPtr">
+             <summary>
             
+             </summary>
+        </member>
+        <member name="M:OpenCvSharp.Face.FisherFaceRecognizer.#ctor">
+            <inheritdoc />
+             <summary>
+             </summary>
+        </member>
+        <member name="M:OpenCvSharp.Face.FisherFaceRecognizer.DisposeManaged">
+            <summary>
+            Releases managed resources
+            </summary>
+        </member>
+        <member name="M:OpenCvSharp.Face.FisherFaceRecognizer.Create(System.Int32,System.Double)">
+            <summary>
+            Training and prediction must be done on grayscale images, use cvtColor to convert between the color spaces.
+            -   **THE FISHERFACES METHOD MAKES THE ASSUMPTION, THAT THE TRAINING AND TEST IMAGES ARE OF EQUAL SIZE.
+                ** (caps-lock, because I got so many mails asking for this). You have to make sure your input data 
+                  has the correct shape, else a meaningful exception is thrown.Use resize to resize the images.
+            -   This model does not support updating.
+            </summary>
+            <param name="numComponents">The number of components (read: Fisherfaces) kept for this Linear Discriminant Analysis 
+            with the Fisherfaces criterion. It's useful to keep all components, that means the number of your classes c 
+            (read: subjects, persons you want to recognize). If you leave this at the default (0) or set it 
+            to a value less-equal 0 or greater (c-1), it will be set to the correct number (c-1) automatically.</param>
+            <param name="threshold">The threshold applied in the prediction. If the distance to the nearest neighbor 
+            is larger than the threshold, this method returns -1.</param>
+            <returns></returns>
+        </member>
+        <member name="T:OpenCvSharp.Face.LBPHFaceRecognizer">
+            <inheritdoc />
+            <summary>
+            The Circular Local Binary Patterns (used in training and prediction) expect the data given as
+            grayscale images, use cvtColor to convert between the color spaces.
+            This model supports updating.
             </summary>
         </member>
         <member name="F:OpenCvSharp.Face.LBPHFaceRecognizer.recognizerPtr">
@@ -25613,17 +25865,27 @@
             
              </summary>
         </member>
-        <member name="M:OpenCvSharp.Face.LBPHFaceRecognizer.FromPtr(System.IntPtr)">
-            <summary>
-            Creates instance from cv::Ptr&lt;T&gt; .
-            ptr is disposed when the wrapper disposes.
-            </summary>
-            <param name="ptr"></param>
-        </member>
         <member name="M:OpenCvSharp.Face.LBPHFaceRecognizer.DisposeManaged">
             <summary>
             Releases managed resources
             </summary>
+        </member>
+        <member name="M:OpenCvSharp.Face.LBPHFaceRecognizer.Create(System.Int32,System.Int32,System.Int32,System.Int32,System.Double)">
+            <summary>
+            The Circular Local Binary Patterns (used in training and prediction) expect the data given as
+            grayscale images, use cvtColor to convert between the color spaces.
+            This model supports updating.
+            </summary>
+            <param name="radius">The radius used for building the Circular Local Binary Pattern. The greater the radius, the</param>
+            <param name="neighbors">The number of sample points to build a Circular Local Binary Pattern from. 
+            An appropriate value is to use `8` sample points.Keep in mind: the more sample points you include, the higher the computational cost.</param>
+            <param name="gridX">The number of cells in the horizontal direction, 8 is a common value used in publications. 
+            The more cells, the finer the grid, the higher the dimensionality of the resulting feature vector.</param>
+            <param name="gridY">The number of cells in the vertical direction, 8 is a common value used in publications. 
+            The more cells, the finer the grid, the higher the dimensionality of the resulting feature vector.</param>
+            <param name="threshold">The threshold applied in the prediction. If the distance to the nearest neighbor 
+            is larger than the threshold, this method returns -1.</param>
+            <returns></returns>
         </member>
         <member name="M:OpenCvSharp.Face.LBPHFaceRecognizer.GetGridX">
             <summary>
@@ -30362,6 +30624,309 @@
             <param name="dstpt"></param>
             <returns></returns>
         </member>
+        <member name="T:OpenCvSharp.ImgHash.AverageHash">
+            <inheritdoc />
+            <summary>
+            Computes average hash value of the input image.
+            This is a fast image hashing algorithm, but only work on simple case. For more details, 
+            please refer to @cite lookslikeit
+            </summary>
+        </member>
+        <member name="F:OpenCvSharp.ImgHash.AverageHash.ptrObj">
+            <summary>
+            cv::Ptr&lt;T&gt;
+            </summary>
+        </member>
+        <member name="M:OpenCvSharp.ImgHash.AverageHash.#ctor(System.IntPtr)">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:OpenCvSharp.ImgHash.AverageHash.Create">
+            <summary>
+            Constructor
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:OpenCvSharp.ImgHash.AverageHash.DisposeManaged">
+            <inheritdoc />
+            <summary>
+            Releases managed resources
+            </summary>
+        </member>
+        <member name="M:OpenCvSharp.ImgHash.AverageHash.Compute(OpenCvSharp.InputArray,OpenCvSharp.OutputArray)">
+            <inheritdoc />
+            <param name="inputArr">input image want to compute hash value, type should be CV_8UC4, CV_8UC3 or CV_8UC1.</param>
+            <param name="outputArr">Hash value of input, it will contain 16 hex decimal number, return type is CV_8U</param>
+            <returns></returns>
+        </member>
+        <member name="T:OpenCvSharp.ImgHash.BlockMeanHash">
+            <inheritdoc />
+            <summary>
+            Image hash based on block mean.
+            </summary>
+        </member>
+        <member name="F:OpenCvSharp.ImgHash.BlockMeanHash.ptrObj">
+            <summary>
+            cv::Ptr&lt;T&gt;
+            </summary>
+        </member>
+        <member name="M:OpenCvSharp.ImgHash.BlockMeanHash.#ctor(System.IntPtr)">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:OpenCvSharp.ImgHash.BlockMeanHash.Create(OpenCvSharp.ImgHash.BlockMeanHashMode)">
+            <summary>
+            Create BlockMeanHash object
+            </summary>
+            <param name="mode"></param>
+            <returns></returns>
+        </member>
+        <member name="M:OpenCvSharp.ImgHash.BlockMeanHash.DisposeManaged">
+            <inheritdoc />
+            <summary>
+            Releases managed resources
+            </summary>
+        </member>
+        <member name="M:OpenCvSharp.ImgHash.BlockMeanHash.SetMode(OpenCvSharp.ImgHash.BlockMeanHashMode)">
+            <summary>
+            
+            </summary>
+            <param name="mode"></param>
+        </member>
+        <member name="M:OpenCvSharp.ImgHash.BlockMeanHash.GetMean">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:OpenCvSharp.ImgHash.BlockMeanHash.Compute(OpenCvSharp.InputArray,OpenCvSharp.OutputArray)">
+            <inheritdoc />
+            <summary>
+            Computes block mean hash of the input image
+            </summary>
+            <param name="inputArr">input image want to compute hash value, type should be CV_8UC4, CV_8UC3 or CV_8UC1.</param>
+            <param name="outputArr">Hash value of input, it will contain 16 hex decimal number, return type is CV_8U</param>
+            <returns></returns>
+        </member>
+        <member name="T:OpenCvSharp.ImgHash.ColorMomentHash">
+            <inheritdoc />
+            <summary>
+            Image hash based on color moments.
+            </summary>
+        </member>
+        <member name="F:OpenCvSharp.ImgHash.ColorMomentHash.ptrObj">
+            <summary>
+            cv::Ptr&lt;T&gt;
+            </summary>
+        </member>
+        <member name="M:OpenCvSharp.ImgHash.ColorMomentHash.#ctor(System.IntPtr)">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:OpenCvSharp.ImgHash.ColorMomentHash.Create">
+            <summary>
+            Constructor
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:OpenCvSharp.ImgHash.ColorMomentHash.DisposeManaged">
+            <inheritdoc />
+            <summary>
+            Releases managed resources
+            </summary>
+        </member>
+        <member name="M:OpenCvSharp.ImgHash.ColorMomentHash.Compute(OpenCvSharp.InputArray,OpenCvSharp.OutputArray)">
+            <inheritdoc />
+            <summary>
+            Computes color moment hash of the input, the algorithm is come from the paper "Perceptual Hashing for Color Images Using Invariant Moments"
+            </summary>
+            <param name="inputArr">input image want to compute hash value, type should be CV_8UC4, CV_8UC3 or CV_8UC1.</param>
+            <param name="outputArr">42 hash values with type CV_64F(double)</param>
+            <returns></returns>
+        </member>
+        <member name="T:OpenCvSharp.ImgHash.BlockMeanHashMode">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:OpenCvSharp.ImgHash.BlockMeanHashMode.Mode0">
+            <summary>
+            use fewer block and generate 16*16/8 uchar hash value
+            </summary>
+        </member>
+        <member name="F:OpenCvSharp.ImgHash.BlockMeanHashMode.Mode1">
+            <summary>
+            use block blocks(step sizes/2), generate 31*31/8 + 1 uchar hash value
+            </summary>
+        </member>
+        <member name="T:OpenCvSharp.ImgHash.ImgHashBase">
+            <inheritdoc />
+            <summary>
+            The base class for image hash algorithms
+            </summary>
+        </member>
+        <member name="M:OpenCvSharp.ImgHash.ImgHashBase.Compute(OpenCvSharp.InputArray,OpenCvSharp.OutputArray)">
+            <summary>
+            Computes hash of the input image
+            </summary>
+            <param name="inputArr">input image want to compute hash value</param>
+            <param name="outputArr">hash of the image</param>
+            <returns></returns>
+        </member>
+        <member name="M:OpenCvSharp.ImgHash.ImgHashBase.Compare(OpenCvSharp.InputArray,OpenCvSharp.InputArray)">
+            <summary>
+            Compare the hash value between inOne and inTwo
+            </summary>
+            <param name="hashOne">Hash value one</param>
+            <param name="hashTwo">Hash value two</param>
+            <returns>value indicate similarity between inOne and inTwo, the meaning of the value vary from algorithms to algorithms</returns>
+        </member>
+        <member name="T:OpenCvSharp.ImgHash.MarrHildrethHash">
+            <inheritdoc />
+            <summary>
+            Marr-Hildreth Operator Based Hash, slowest but more discriminative.
+            </summary>
+        </member>
+        <member name="F:OpenCvSharp.ImgHash.MarrHildrethHash.ptrObj">
+            <summary>
+            cv::Ptr&lt;T&gt;
+            </summary>
+        </member>
+        <member name="M:OpenCvSharp.ImgHash.MarrHildrethHash.#ctor(System.IntPtr)">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:OpenCvSharp.ImgHash.MarrHildrethHash.Create(System.Single,System.Single)">
+            <summary>
+            Create BlockMeanHash object
+            </summary>
+            <param name="alpha">int scale factor for marr wavelet (default=2).</param>
+            <param name="scale">int level of scale factor (default = 1)</param>
+            <returns></returns>
+        </member>
+        <member name="M:OpenCvSharp.ImgHash.MarrHildrethHash.DisposeManaged">
+            <inheritdoc />
+            <summary>
+            Releases managed resources
+            </summary>
+        </member>
+        <member name="M:OpenCvSharp.ImgHash.MarrHildrethHash.SetKernelParam(System.Single,System.Single)">
+            <summary>
+            
+            </summary>
+            <param name="alpha">int scale factor for marr wavelet (default=2).</param>
+            <param name="scale">int level of scale factor (default = 1)</param>
+        </member>
+        <member name="P:OpenCvSharp.ImgHash.MarrHildrethHash.Alpha">
+            <summary>
+            int scale factor for marr wavelet (default=2).
+            </summary>
+        </member>
+        <member name="P:OpenCvSharp.ImgHash.MarrHildrethHash.Scale">
+            <summary>
+            int level of scale factor (default = 1)
+            </summary>
+        </member>
+        <member name="M:OpenCvSharp.ImgHash.MarrHildrethHash.Compute(OpenCvSharp.InputArray,OpenCvSharp.OutputArray)">
+            <inheritdoc />
+            <summary>
+            Computes average hash value of the input image
+            </summary>
+            <param name="inputArr">input image want to compute hash value, type should be CV_8UC4, CV_8UC3, CV_8UC1.</param>
+            <param name="outputArr">Hash value of input, it will contain 16 hex decimal number, return type is CV_8U</param>
+            <returns></returns>
+        </member>
+        <member name="T:OpenCvSharp.ImgHash.PHash">
+            <inheritdoc />
+            <summary>
+            pHash: Slower than average_hash, but tolerant of minor modifications.
+            This algorithm can combat more variation than averageHash, for more details please refer to @cite lookslikeit
+            </summary>
+        </member>
+        <member name="F:OpenCvSharp.ImgHash.PHash.ptrObj">
+            <summary>
+            cv::Ptr&lt;T&gt;
+            </summary>
+        </member>
+        <member name="M:OpenCvSharp.ImgHash.PHash.#ctor(System.IntPtr)">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:OpenCvSharp.ImgHash.PHash.Create">
+            <summary>
+            Constructor
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:OpenCvSharp.ImgHash.PHash.DisposeManaged">
+            <inheritdoc />
+            <summary>
+            Releases managed resources
+            </summary>
+        </member>
+        <member name="M:OpenCvSharp.ImgHash.PHash.Compute(OpenCvSharp.InputArray,OpenCvSharp.OutputArray)">
+            <inheritdoc />
+            <summary>
+            Computes pHash value of the input image
+            </summary>
+            <param name="inputArr">input image want to compute hash value, type should be CV_8UC4, CV_8UC3, CV_8UC1.</param>
+            <param name="outputArr">Hash value of input, it will contain 8 uchar value</param>
+            <returns></returns>
+        </member>
+        <member name="T:OpenCvSharp.ImgHash.RadialVarianceHash">
+            <inheritdoc />
+            <summary>
+            Image hash based on Radon transform.
+            </summary>
+        </member>
+        <member name="F:OpenCvSharp.ImgHash.RadialVarianceHash.ptrObj">
+            <summary>
+            cv::Ptr&lt;T&gt;
+            </summary>
+        </member>
+        <member name="M:OpenCvSharp.ImgHash.RadialVarianceHash.#ctor(System.IntPtr)">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:OpenCvSharp.ImgHash.RadialVarianceHash.Create(System.Double,System.Int32)">
+            <summary>
+            Create BlockMeanHash object
+            </summary>
+            <param name="sigma">Gaussian kernel standard deviation</param>
+            <param name="numOfAngleLine">The number of angles to consider</param>
+            <returns></returns>
+        </member>
+        <member name="M:OpenCvSharp.ImgHash.RadialVarianceHash.DisposeManaged">
+            <inheritdoc />
+            <summary>
+            Releases managed resources
+            </summary>
+        </member>
+        <member name="P:OpenCvSharp.ImgHash.RadialVarianceHash.Sigma">
+            <summary>
+            Gaussian kernel standard deviation
+            </summary>
+        </member>
+        <member name="P:OpenCvSharp.ImgHash.RadialVarianceHash.NumOfAngleLine">
+            <summary>
+            The number of angles to consider
+            </summary>
+        </member>
+        <member name="M:OpenCvSharp.ImgHash.RadialVarianceHash.Compute(OpenCvSharp.InputArray,OpenCvSharp.OutputArray)">
+            <inheritdoc />
+            <summary>
+            Computes average hash value of the input image
+            </summary>
+            <param name="inputArr">input image want to compute hash value, type should be CV_8UC4, CV_8UC3, CV_8UC1.</param>
+            <param name="outputArr">Hash value of input</param>
+            <returns></returns>
+        </member>
         <member name="T:OpenCvSharp.ML.ANN_MLP">
             <summary>
             Artificial Neural Networks - Multi-Layer Perceptrons.
@@ -31288,7 +31853,7 @@
             <summary>
             Loads algorithm from a String.
             </summary>
-            <param name="strModel">he string variable containing the model you want to load.</param>
+            <param name="strModel">The string variable containing the model you want to load.</param>
             <returns></returns>
         </member>
         <member name="M:OpenCvSharp.ML.SVM.DisposeManaged">
@@ -32995,30 +33560,120 @@
             <param name="fs"></param>
             <param name="output"></param>
         </member>
+        <member name="T:OpenCvSharp.Text.BaseOcr">
+            <summary>
+            base class BaseOCR declares a common API that would be used in a typical text recognition scenario
+            </summary>
+        </member>
+        <member name="M:OpenCvSharp.Text.BaseOcr.Run(OpenCvSharp.Mat,System.String@,OpenCvSharp.Rect[]@,System.String[]@,System.Single[]@,OpenCvSharp.Text.ComponentLevels)">
+            <summary>
+            
+            </summary>
+            <param name="image"></param>
+            <param name="outputText"></param>
+            <param name="componentRects"></param>
+            <param name="componentTexts"></param>
+            <param name="componentConfidences"></param>
+            <param name="componentLevel"></param>
+        </member>
+        <member name="M:OpenCvSharp.Text.BaseOcr.Run(OpenCvSharp.Mat,OpenCvSharp.Mat,System.String@,OpenCvSharp.Rect[]@,System.String[]@,System.Single[]@,OpenCvSharp.Text.ComponentLevels)">
+            <summary>
+            
+            </summary>
+            <param name="image"></param>
+            <param name="mask"></param>
+            <param name="outputText"></param>
+            <param name="componentRects"></param>
+            <param name="componentTexts"></param>
+            <param name="componentConfidences"></param>
+            <param name="componentLevel"></param>
+        </member>
+        <member name="T:OpenCvSharp.Text.ComponentLevels">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:OpenCvSharp.Text.ComponentLevels.Word">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:OpenCvSharp.Text.ComponentLevels.TextLine">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:OpenCvSharp.Text.OCRTesseract">
+            <summary>
+            Recognize text using the tesseract-ocr API.
+            
+            Takes image on input and returns recognized text in the output_text parameter.
+            Optionallyprovides also the Rects for individual text elements found(e.g.words), 
+            and the list of those text elements with their confidence values.
+            </summary>
+        </member>
+        <member name="M:OpenCvSharp.Text.OCRTesseract.#ctor(System.IntPtr)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="p"></param>
+        </member>
+        <member name="M:OpenCvSharp.Text.OCRTesseract.Create(System.String,System.String,System.String,System.Int32,System.Int32)">
+            <summary>
+            Creates an instance of the OCRTesseract class. Initializes Tesseract.
+            </summary>
+            <param name="datapath">datapath the name of the parent directory of tessdata ended with "/", or null to use the system's default directory.</param>
+            <param name="language">an ISO 639-3 code or NULL will default to "eng".</param>
+            <param name="charWhitelist">specifies the list of characters used for recognition. 
+            null defaults to "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ".</param>
+            <param name="oem">tesseract-ocr offers different OCR Engine Modes (OEM), 
+            by deffault tesseract::OEM_DEFAULT is used.See the tesseract-ocr API documentation for other possible values.</param>
+            <param name="psmode">tesseract-ocr offers different Page Segmentation Modes (PSM) tesseract::PSM_AUTO (fully automatic layout analysis) is used.
+            See the tesseract-ocr API documentation for other possible values.</param>
+        </member>
+        <member name="M:OpenCvSharp.Text.OCRTesseract.DisposeManaged">
+            <summary>
+            Releases managed resources
+            </summary>
+        </member>
+        <member name="M:OpenCvSharp.Text.OCRTesseract.Run(OpenCvSharp.Mat,System.String@,OpenCvSharp.Rect[]@,System.String[]@,System.Single[]@,OpenCvSharp.Text.ComponentLevels)">
+            <summary>
+            Recognize text using the tesseract-ocr API.
+            Takes image on input and returns recognized text in the output_text parameter.
+            Optionally provides also the Rects for individual text elements found(e.g.words), 
+            and the list of those text elements with their confidence values.
+            </summary>
+            <param name="image">Input image CV_8UC1 or CV_8UC3</param>
+            <param name="outputText">Output text of the tesseract-ocr.</param>
+            <param name="componentRects">If provided the method will output a list of Rects for the individual 
+            text elements found(e.g.words or text lines).</param>
+            <param name="componentTexts">If provided the method will output a list of text strings for the 
+            recognition of individual text elements found(e.g.words or text lines).</param>
+            <param name="componentConfidences">If provided the method will output a list of confidence values 
+            for the recognition of individual text elements found(e.g.words or text lines).</param>
+            <param name="componentLevel">OCR_LEVEL_WORD (by default), or OCR_LEVEL_TEXT_LINE.</param>
+        </member>
+        <member name="M:OpenCvSharp.Text.OCRTesseract.Run(OpenCvSharp.Mat,OpenCvSharp.Mat,System.String@,OpenCvSharp.Rect[]@,System.String[]@,System.Single[]@,OpenCvSharp.Text.ComponentLevels)">
+            <summary>
+            Recognize text using the tesseract-ocr API.
+            Takes image on input and returns recognized text in the output_text parameter.
+            Optionally provides also the Rects for individual text elements found(e.g.words), 
+            and the list of those text elements with their confidence values.
+            </summary>
+            <param name="image">Input image CV_8UC1 or CV_8UC3</param>
+            <param name="mask"></param>
+            <param name="outputText">Output text of the tesseract-ocr.</param>
+            <param name="componentRects">If provided the method will output a list of Rects for the individual 
+            text elements found(e.g.words or text lines).</param>
+            <param name="componentTexts">If provided the method will output a list of text strings for the 
+            recognition of individual text elements found(e.g.words or text lines).</param>
+            <param name="componentConfidences">If provided the method will output a list of confidence values 
+            for the recognition of individual text elements found(e.g.words or text lines).</param>
+            <param name="componentLevel">OCR_LEVEL_WORD (by default), or OCR_LEVEL_TEXT_LINE.</param>
+        </member>
         <member name="T:OpenCvSharp.Tracking.Tracker">
             <summary>
             Base abstract class for the long-term tracker
-            </summary>
-        </member>
-        <member name="F:OpenCvSharp.Tracking.Tracker.ptrObj">
-            <summary>
-            cv::Ptr&lt;T&gt;
-            </summary>
-        </member>
-        <member name="M:OpenCvSharp.Tracking.Tracker.#ctor(System.IntPtr)">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="M:OpenCvSharp.Tracking.Tracker.Create(OpenCvSharp.Tracking.TrackerTypes)">
-            <summary>
-            
-            </summary>
-            <param name="trackerType"></param>
-        </member>
-        <member name="M:OpenCvSharp.Tracking.Tracker.DisposeManaged">
-            <summary>
-            Releases managed resources
             </summary>
         </member>
         <member name="M:OpenCvSharp.Tracking.Tracker.Init(OpenCvSharp.Mat,OpenCvSharp.Rect2d)">
@@ -33038,6 +33693,436 @@
             <returns>True means that target was located and false means that tracker cannot locate target in 
             current frame.Note, that latter *does not* imply that tracker has failed, maybe target is indeed 
             missing from the frame (say, out of sight)</returns>
+        </member>
+        <member name="T:OpenCvSharp.Tracking.TrackerBoosting">
+            <inheritdoc />
+            <summary>
+            This is a real-time object tracking based on a novel on-line version of the AdaBoost algorithm.
+            The classifier uses the surrounding background as negative examples in update step to avoid the
+            drifting problem.The implementation is based on @cite OLB.
+            </summary>
+        </member>
+        <member name="F:OpenCvSharp.Tracking.TrackerBoosting.ptrObj">
+            <summary>
+            cv::Ptr&lt;T&gt;
+            </summary>
+        </member>
+        <member name="M:OpenCvSharp.Tracking.TrackerBoosting.#ctor(System.IntPtr)">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:OpenCvSharp.Tracking.TrackerBoosting.Create">
+            <summary>
+            Constructor
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:OpenCvSharp.Tracking.TrackerBoosting.Create(OpenCvSharp.Tracking.TrackerBoosting.Params)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="parameters">BOOSTING parameters</param>
+            <returns></returns>
+        </member>
+        <member name="M:OpenCvSharp.Tracking.TrackerBoosting.DisposeManaged">
+            <summary>
+            Releases managed resources
+            </summary>
+        </member>
+        <member name="T:OpenCvSharp.Tracking.TrackerBoosting.Params">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:OpenCvSharp.Tracking.TrackerBoosting.Params.NumClassifiers">
+            <summary>
+            the number of classifiers to use in a OnlineBoosting algorithm
+            </summary>
+        </member>
+        <member name="F:OpenCvSharp.Tracking.TrackerBoosting.Params.SamplerOverlap">
+            <summary>
+            search region parameters to use in a OnlineBoosting algorithm
+            </summary>
+        </member>
+        <member name="F:OpenCvSharp.Tracking.TrackerBoosting.Params.SamplerSearchFactor">
+            <summary>
+            search region parameters to use in a OnlineBoosting algorithm
+            </summary>
+        </member>
+        <member name="F:OpenCvSharp.Tracking.TrackerBoosting.Params.IterationInit">
+            <summary>
+            the initial iterations
+            </summary>
+        </member>
+        <member name="F:OpenCvSharp.Tracking.TrackerBoosting.Params.FeatureSetNumFeatures">
+            <summary>
+            # features
+            </summary>
+        </member>
+        <member name="T:OpenCvSharp.Tracking.TrackerGOTURN">
+            <inheritdoc />
+            <summary>
+            GOTURN (@cite GOTURN) is kind of trackers based on Convolutional Neural Networks (CNN). 
+            </summary>
+            <remarks>
+            * While taking all advantages of CNN trackers, GOTURN is much faster due to offline training without online fine-tuning nature.
+            * GOTURN tracker addresses the problem of single target tracking: given a bounding box label of an object in the first frame of the video,
+            
+            * we track that object through the rest of the video.NOTE: Current method of GOTURN does not handle occlusions; however, it is fairly
+            * robust to viewpoint changes, lighting changes, and deformations.
+            
+            * Inputs of GOTURN are two RGB patches representing Target and Search patches resized to 227x227.
+            * Outputs of GOTURN are predicted bounding box coordinates, relative to Search patch coordinate system, in format X1, Y1, X2, Y2.
+            * Original paper is here: [http://davheld.github.io/GOTURN/GOTURN.pdf]
+            * As long as original authors implementation: [https://github.com/davheld/GOTURN#train-the-tracker]
+            * Implementation of training algorithm is placed in separately here due to 3d-party dependencies:
+            *  [https://github.com/Auron-X/GOTURN_Training_Toolkit]
+            * GOTURN architecture goturn.prototxt and trained model goturn.caffemodel are accessible on opencv_extra GitHub repository.
+            </remarks>
+        </member>
+        <member name="F:OpenCvSharp.Tracking.TrackerGOTURN.ptrObj">
+            <summary>
+            cv::Ptr&lt;T&gt;
+            </summary>
+        </member>
+        <member name="M:OpenCvSharp.Tracking.TrackerGOTURN.#ctor(System.IntPtr)">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:OpenCvSharp.Tracking.TrackerGOTURN.Create">
+            <summary>
+            Constructor
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:OpenCvSharp.Tracking.TrackerGOTURN.Create(OpenCvSharp.Tracking.TrackerGOTURN.Params)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="parameters">GOTURN parameters</param>
+            <returns></returns>
+        </member>
+        <member name="M:OpenCvSharp.Tracking.TrackerGOTURN.DisposeManaged">
+            <summary>
+            Releases managed resources
+            </summary>
+        </member>
+        <member name="T:OpenCvSharp.Tracking.TrackerGOTURN.Params">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:OpenCvSharp.Tracking.TrackerKCF">
+            <inheritdoc />
+            <summary>
+            KCF is a novel tracking framework that utilizes properties of circulant matrix to enhance the processing speed.
+            * This tracking method is an implementation of @cite KCF_ECCV which is extended to KFC with color-names features(@cite KCF_CN).
+            * The original paper of KCF is available at [http://www.robots.ox.ac.uk/~joao/publications/henriques_tpami2015.pdf]
+            * as well as the matlab implementation.For more information about KCF with color-names features, please refer to
+            * [http://www.cvl.isy.liu.se/research/objrec/visualtracking/colvistrack/index.html].
+            </summary>
+        </member>
+        <member name="F:OpenCvSharp.Tracking.TrackerKCF.ptrObj">
+            <summary>
+            cv::Ptr&lt;T&gt;
+            </summary>
+        </member>
+        <member name="M:OpenCvSharp.Tracking.TrackerKCF.#ctor(System.IntPtr)">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:OpenCvSharp.Tracking.TrackerKCF.Create">
+            <summary>
+            Constructor
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:OpenCvSharp.Tracking.TrackerKCF.Create(OpenCvSharp.Tracking.TrackerKCF.Params)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="parameters">KCF parameters TrackerKCF::Params</param>
+            <returns></returns>
+        </member>
+        <member name="M:OpenCvSharp.Tracking.TrackerKCF.DisposeManaged">
+            <summary>
+            Releases managed resources
+            </summary>
+        </member>
+        <member name="T:OpenCvSharp.Tracking.TrackerKCF.Params">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:OpenCvSharp.Tracking.TrackerKCF.Params.DetectThresh">
+            <summary>
+            detection confidence threshold
+            </summary>
+        </member>
+        <member name="F:OpenCvSharp.Tracking.TrackerKCF.Params.Sigma">
+            <summary>
+            gaussian kernel bandwidth
+            </summary>
+        </member>
+        <member name="F:OpenCvSharp.Tracking.TrackerKCF.Params.Lambda">
+            <summary>
+            regularization
+            </summary>
+        </member>
+        <member name="F:OpenCvSharp.Tracking.TrackerKCF.Params.InterpFactor">
+            <summary>
+            linear interpolation factor for adaptation
+            </summary>
+        </member>
+        <member name="F:OpenCvSharp.Tracking.TrackerKCF.Params.OutputSigmaFactor">
+            <summary>
+            spatial bandwidth (proportional to target)
+            </summary>
+        </member>
+        <member name="F:OpenCvSharp.Tracking.TrackerKCF.Params.PcaLearningRate">
+            <summary>
+            compression learning rate
+            </summary>
+        </member>
+        <member name="F:OpenCvSharp.Tracking.TrackerKCF.Params.Resize">
+            <summary>
+            activate the resize feature to improve the processing speed
+            </summary>
+        </member>
+        <member name="F:OpenCvSharp.Tracking.TrackerKCF.Params.SplitCoeff">
+            <summary>
+            split the training coefficients into two matrices
+            </summary>
+        </member>
+        <member name="F:OpenCvSharp.Tracking.TrackerKCF.Params.WrapKernel">
+            <summary>
+            wrap around the kernel values
+            </summary>
+        </member>
+        <member name="F:OpenCvSharp.Tracking.TrackerKCF.Params.CompressFeature">
+            <summary>
+            activate the pca method to compress the features
+            </summary>
+        </member>
+        <member name="F:OpenCvSharp.Tracking.TrackerKCF.Params.MaxPatchSize">
+            <summary>
+            threshold for the ROI size
+            </summary>
+        </member>
+        <member name="F:OpenCvSharp.Tracking.TrackerKCF.Params.CompressedSize">
+            <summary>
+            feature size after compression
+            </summary>
+        </member>
+        <member name="F:OpenCvSharp.Tracking.TrackerKCF.Params.DescPca">
+            <summary>
+            compressed descriptors of TrackerKCF::MODE
+            </summary>
+        </member>
+        <member name="F:OpenCvSharp.Tracking.TrackerKCF.Params.DescNpca">
+            <summary>
+            non-compressed descriptors of TrackerKCF::MODE
+            </summary>
+        </member>
+        <member name="T:OpenCvSharp.Tracking.TrackerMedianFlow">
+            <inheritdoc />
+            <summary>
+            Median Flow tracker implementation.
+            </summary>
+            <remarks> 
+            The tracker is suitable for very smooth and predictable movements when object is visible throughout the 
+            whole sequence.It's quite and accurate for this type of problems (in particular, it was shown 
+            by authors to outperform MIL). During the implementation period the code at [http://www.aonsquared.co.uk/node/5],
+             the courtesy of the author Arthur Amarra, was used for the reference purpose.
+            </remarks>
+        </member>
+        <member name="F:OpenCvSharp.Tracking.TrackerMedianFlow.ptrObj">
+            <summary>
+            cv::Ptr&lt;T&gt;
+            </summary>
+        </member>
+        <member name="M:OpenCvSharp.Tracking.TrackerMedianFlow.#ctor(System.IntPtr)">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:OpenCvSharp.Tracking.TrackerMedianFlow.Create">
+            <summary>
+            Constructor
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:OpenCvSharp.Tracking.TrackerMedianFlow.Create(OpenCvSharp.Tracking.TrackerMedianFlow.Params)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="parameters">MedianFlow parameters</param>
+            <returns></returns>
+        </member>
+        <member name="M:OpenCvSharp.Tracking.TrackerMedianFlow.DisposeManaged">
+            <summary>
+            Releases managed resources
+            </summary>
+        </member>
+        <member name="T:OpenCvSharp.Tracking.TrackerMedianFlow.Params">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:OpenCvSharp.Tracking.TrackerMedianFlow.Params.PointsInGrid">
+            <summary>
+            square root of number of keypoints used; increase it to trade accurateness for speed
+            </summary>
+        </member>
+        <member name="F:OpenCvSharp.Tracking.TrackerMedianFlow.Params.WinSize">
+            <summary>
+            window size parameter for Lucas-Kanade optical flow
+            </summary>
+        </member>
+        <member name="F:OpenCvSharp.Tracking.TrackerMedianFlow.Params.MaxLevel">
+            <summary>
+            maximal pyramid level number for Lucas-Kanade optical flow
+            </summary>
+        </member>
+        <member name="F:OpenCvSharp.Tracking.TrackerMedianFlow.Params.TermCriteria">
+            <summary>
+            termination criteria for Lucas-Kanade optical flow
+            </summary>
+        </member>
+        <member name="F:OpenCvSharp.Tracking.TrackerMedianFlow.Params.WinSizeNCC">
+            <summary>
+            window size around a point for normalized cross-correlation check
+            </summary>
+        </member>
+        <member name="F:OpenCvSharp.Tracking.TrackerMedianFlow.Params.MaxMedianLengthOfDisplacementDifference">
+            <summary>
+            criterion for loosing the tracked object
+            </summary>
+        </member>
+        <member name="T:OpenCvSharp.Tracking.TrackerMIL">
+            <inheritdoc />
+            <summary>
+            The MIL algorithm trains a classifier in an online manner to separate the object from the background.
+            Multiple Instance Learning avoids the drift problem for a robust tracking.The implementation is based on @cite MIL.
+            Original code can be found here [http://vision.ucsd.edu/~bbabenko/project_miltrack.shtml]
+            </summary>
+        </member>
+        <member name="F:OpenCvSharp.Tracking.TrackerMIL.ptrObj">
+            <summary>
+            cv::Ptr&lt;T&gt;
+            </summary>
+        </member>
+        <member name="M:OpenCvSharp.Tracking.TrackerMIL.#ctor(System.IntPtr)">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:OpenCvSharp.Tracking.TrackerMIL.Create">
+            <summary>
+            Constructor
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:OpenCvSharp.Tracking.TrackerMIL.Create(OpenCvSharp.Tracking.TrackerMIL.Params)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="parameters">MIL parameters</param>
+            <returns></returns>
+        </member>
+        <member name="M:OpenCvSharp.Tracking.TrackerMIL.DisposeManaged">
+            <summary>
+            Releases managed resources
+            </summary>
+        </member>
+        <member name="T:OpenCvSharp.Tracking.TrackerMIL.Params">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:OpenCvSharp.Tracking.TrackerMIL.Params.SamplerInitInRadius">
+            <summary>
+            radius for gathering positive instances during init
+            </summary>
+        </member>
+        <member name="F:OpenCvSharp.Tracking.TrackerMIL.Params.SamplerInitMaxNegNum">
+            <summary>
+            # negative samples to use during init
+            </summary>
+        </member>
+        <member name="F:OpenCvSharp.Tracking.TrackerMIL.Params.SamplerSearchWinSize">
+            <summary>
+            size of search window
+            </summary>
+        </member>
+        <member name="F:OpenCvSharp.Tracking.TrackerMIL.Params.SamplerTrackInRadius">
+            <summary>
+            radius for gathering positive instances during tracking
+            </summary>
+        </member>
+        <member name="F:OpenCvSharp.Tracking.TrackerMIL.Params.SamplerTrackMaxPosNum">
+            <summary>
+            # positive samples to use during tracking
+            </summary>
+        </member>
+        <member name="F:OpenCvSharp.Tracking.TrackerMIL.Params.SamplerTrackMaxNegNum">
+            <summary>
+            # negative samples to use during tracking
+            </summary>
+        </member>
+        <member name="F:OpenCvSharp.Tracking.TrackerMIL.Params.FeatureSetNumFeatures">
+            <summary>
+            # features  
+            </summary>
+        </member>
+        <member name="T:OpenCvSharp.Tracking.TrackerTLD">
+            <inheritdoc />
+            <summary>
+            TLD is a novel tracking framework that explicitly decomposes the long-term tracking task into tracking, learning and detection.
+            
+            The tracker follows the object from frame to frame.The detector localizes all appearances that 
+            have been observed so far and corrects the tracker if necessary.The learning estimates detectorfs 
+            errors and updates it to avoid these errors in the future.The implementation is based on @cite TLD .
+            
+            The Median Flow algorithm (see cv::TrackerMedianFlow) was chosen as a tracking component in this 
+            implementation, following authors. Tracker is supposed to be able to handle rapid motions, partial occlusions, object absence etc.
+            </summary>
+        </member>
+        <member name="F:OpenCvSharp.Tracking.TrackerTLD.ptrObj">
+            <summary>
+            cv::Ptr&lt;T&gt;
+            </summary>
+        </member>
+        <member name="M:OpenCvSharp.Tracking.TrackerTLD.#ctor(System.IntPtr)">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:OpenCvSharp.Tracking.TrackerTLD.Create">
+            <summary>
+            Constructor
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:OpenCvSharp.Tracking.TrackerTLD.Create(OpenCvSharp.Tracking.TrackerTLD.Params)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="parameters">TLD parameters</param>
+            <returns></returns>
+        </member>
+        <member name="M:OpenCvSharp.Tracking.TrackerTLD.DisposeManaged">
+            <summary>
+            Releases managed resources
+            </summary>
+        </member>
+        <member name="T:OpenCvSharp.Tracking.TrackerTLD.Params">
+            <summary>
+            
+            </summary>
         </member>
         <member name="T:OpenCvSharp.CameraChannels">
             <summary>
@@ -35765,6 +36850,39 @@
             Default error handler
             </summary>
         </member>
+        <member name="T:OpenCvSharp.StdString">
+            <inheritdoc />
+            <summary>
+            C++ std::string
+            </summary>
+        </member>
+        <member name="M:OpenCvSharp.StdString.#ctor">
+            <inheritdoc />
+            <summary>
+            </summary>
+        </member>
+        <member name="M:OpenCvSharp.StdString.#ctor(System.String)">
+            <inheritdoc />
+            <summary>
+            </summary>
+            <param name="str"></param>
+        </member>
+        <member name="M:OpenCvSharp.StdString.DisposeUnmanaged">
+            <summary>
+            Releases unmanaged resources
+            </summary>
+        </member>
+        <member name="P:OpenCvSharp.StdString.Size">
+            <summary>
+            string.size()
+            </summary>
+        </member>
+        <member name="M:OpenCvSharp.StdString.ToString">
+            <summary>
+            Converts std::string to managed string
+            </summary>
+            <returns></returns>
+        </member>
         <member name="T:OpenCvSharp.Win32Api">
             <summary>
             Win32API Wrapper
@@ -36499,6 +37617,50 @@
             </summary>
         </member>
         <member name="M:OpenCvSharp.VectorOfByte.ToArray">
+            <summary>
+            Converts std::vector to managed array
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:OpenCvSharp.VectorOfCvString">
+            <summary>
+            std::vector&lt;cv::String&gt;
+            </summary>
+        </member>
+        <member name="M:OpenCvSharp.VectorOfCvString.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:OpenCvSharp.VectorOfCvString.#ctor(System.IntPtr)">
+            <inheritdoc />
+            <summary>
+            </summary>
+            <param name="ptr"></param>
+        </member>
+        <member name="M:OpenCvSharp.VectorOfCvString.#ctor(System.Int32)">
+            <inheritdoc />
+            <summary>
+            </summary>
+            <param name="size"></param>
+        </member>
+        <member name="M:OpenCvSharp.VectorOfCvString.DisposeUnmanaged">
+            <inheritdoc />
+            <summary>
+            Releases unmanaged resources
+            </summary>
+        </member>
+        <member name="P:OpenCvSharp.VectorOfCvString.Size">
+            <summary>
+            vector.size()
+            </summary>
+        </member>
+        <member name="P:OpenCvSharp.VectorOfCvString.ElemPtr">
+            <summary>
+            &amp;vector[0]
+            </summary>
+        </member>
+        <member name="M:OpenCvSharp.VectorOfCvString.ToArray">
             <summary>
             Converts std::vector to managed array
             </summary>

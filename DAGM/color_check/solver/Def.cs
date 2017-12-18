@@ -15,6 +15,10 @@ namespace DAGM.solver
         public const int JAI_AT_200GE_ResolutionY = 1236;
 
         public string StartupPath { get { return System.AppDomain.CurrentDomain.BaseDirectory; } }
+        public string TensorflowPath { get { return StartupPath + "Tensorflow\\"; } }
+        public string TensorflowDllPath { get { return TensorflowPath + "tensorflowJK.dll"; } }
+        public string TensorflowGraphPath { get { return TensorflowPath + "graph\\"; } }
+
         public string SettingPath { get { return StartupPath + "Settings\\"; } }
         public string MainInspectSettingPath { get { return SettingPath + "_Main\\"; } }
         public string modelSettingPath { get { return SettingPath + "ModelSettings\\"; } }

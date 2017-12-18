@@ -58,7 +58,7 @@ namespace DAGM.solver_ui
             _utils.LoadXML(type, out setting, _utils.GetXMLFullPath(_def.MainInspectSettingPath, 0));
             _dagmSetting = (DAGMsetting)setting;
             ModelSetting modelSetting = _dagmSetting.ModelSetting;            
-            string graphName = modelSetting.ModelName + modelSetting.FeatureWidth + "x" + modelSetting.FeatureHeight;
+            string graphPath = _def.TensorflowGraphPath + modelSetting.ModelName + modelSetting.FeatureWidth + "x" + modelSetting.FeatureHeight;
 
             // parameters in CNN settings           
             int featureWidth = Convert.ToInt32(modelSetting.FeatureWidth);
@@ -71,7 +71,7 @@ namespace DAGM.solver_ui
 
             // solver
             solver.CnnSolver cnn = new solver.CnnSolver();
-            solver.CnnResult cnnResult = cnn.Run(image, graphName);
+            solver.CnnResult cnnResult = cnn.Run(image, graphPath);
 
             Mat resultImage = Cv2.ImRead(_def.ResultImagePath);
 
