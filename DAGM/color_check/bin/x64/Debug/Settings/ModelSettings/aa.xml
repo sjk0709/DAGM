@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<ModelSetting xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <ModelName>dagm</ModelName>
-  <FeatureWidth>32</FeatureWidth>
-  <FeatureHeight>32</FeatureHeight>
-</ModelSetting>

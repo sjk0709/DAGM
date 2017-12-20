@@ -58,7 +58,7 @@ namespace DAGM.solver_ui
             _utils.LoadXML(type, out setting, _utils.GetXMLFullPath(_def.MainInspectSettingPath, 0));
             _dagmSetting = (DAGMsetting)setting;
             ModelSetting modelSetting = _dagmSetting.ModelSetting;            
-            string graphPath = _def.TensorflowGraphPath + modelSetting.ModelName + modelSetting.FeatureWidth + "x" + modelSetting.FeatureHeight;
+            string graphPath = _def.TensorflowGraphPath + modelSetting.ModelName;
 
             // parameters in CNN settings           
             int featureWidth = Convert.ToInt32(modelSetting.FeatureWidth);
@@ -72,11 +72,20 @@ namespace DAGM.solver_ui
             // solver
             solver.CnnSolver cnn = new solver.CnnSolver();
             solver.CnnResult cnnResult = cnn.Run(image, graphPath);
-
-            Mat resultImage = Cv2.ImRead(_def.ResultImagePath);
-
+            
             int classNo = cnnResult.ClassNo;
             int nDefect = cnnResult.nDefect;
+
+            if (classNo < 0)
+            {
+                string[] result = new string[3];
+                result[1] = "None";
+                result[2] = "None";
+                result[3] = "None";
+                return result;
+            }
+
+            Mat resultImage = Cv2.ImRead(_def.ResultImagePath);
 
             //Console.WriteLine("classNo : " + classNo.ToString());
             //Console.WriteLine("nDefect : " + nDefect.ToString());

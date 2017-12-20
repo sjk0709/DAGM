@@ -13,7 +13,7 @@ using System.IO;
 using OpenCvSharp;
 using OpenCvSharp.Extensions;
 
-
+using System.Windows;
 
 namespace DAGM.solver
 {
@@ -61,7 +61,13 @@ namespace DAGM.solver
 
             int classNo = results[0];
             int nDefect = results[1];
-            CnnResult result = new CnnResult(classNo, nDefect);               
+            
+            CnnResult result = new CnnResult(classNo, nDefect);
+
+            if (classNo < 0)
+            {
+                MessageBox.Show("There is no graph file");
+            }
 
             return result;
         }

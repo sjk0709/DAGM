@@ -46,6 +46,7 @@ namespace DAGM.solver_ui
                 _modelSetting.ModelName = ModelName.Text;
                 _modelSetting.FeatureWidth = FeatureWidth.Text;
                 _modelSetting.FeatureHeight = FeatureHeight.Text;
+                _modelSetting.LabelSize = LabelSize.Text;
                 try
                 {
                     XmlSerializer xmlSerializer = new XmlSerializer(typeof(ModelSetting));

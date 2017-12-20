@@ -5,11 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DAGM.solver_ui"
         mc:Ignorable="d"
-        Title="CreatCnnSetting" Height="200" Width="300">
+        Title="CreatCnnSetting" Height="250" Width="300">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="50"/>
             <RowDefinition Height="80"/>
+            <RowDefinition Height="50"/>
             <RowDefinition Height="30"/>
         </Grid.RowDefinitions>
         
@@ -20,6 +21,7 @@
                 </StackPanel>
             </Grid>
         </GroupBox>
+        
         <GroupBox Header="Feature size" Margin="3" Grid.Row="1" >
             <Grid>
                 <Grid.ColumnDefinitions>
@@ -37,6 +39,14 @@
             </Grid>
         </GroupBox>
 
+        <GroupBox Header="Label size"  Margin="3" Grid.Row="2">
+            <Grid>
+                <StackPanel >
+                    <TextBox x:Name="LabelSize" IsReadOnly="False" Margin="3"></TextBox>
+                </StackPanel>
+            </Grid>
+        </GroupBox>
+        
         <Grid Grid.Row="3">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
@@ -44,7 +54,7 @@
                 <ColumnDefinition/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <Button x:Name="btnSaveSetting" Content="Save Setting" Grid.Column="2" Margin="3" Click="btnSaveSetting_Click" />
+            <Button x:Name="btnSaveSetting" Content="Save" Grid.Column="2" Margin="3" Click="btnSaveSetting_Click" />
             <Button x:Name="btnCancel" Content="Cancel" Grid.Column="3" Margin="3" Click="btnCancel_Click"/>
         </Grid>
     </Grid>
