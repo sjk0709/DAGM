@@ -31,6 +31,7 @@ namespace DAGM.solver_ui
         private Def _def = new Def();
         private Utils _utils = new Utils();
         private DAGMsetting _dagmSetting = null;
+        private bool _existsGraphFile = false;
 
         public CnnSetting()
         {
@@ -82,6 +83,24 @@ namespace DAGM.solver_ui
                 string fullPath = _utils.GetXMLFullPath(path, selectedIdx);
                 string xml = _utils.GetXML(fullPath);
                 tb.Text = xml;
+                
+                object setting;
+                Type type = typeof(ModelSetting);
+                _utils.LoadXML(type, out setting, fullPath);
+                ModelSetting modelSetting = (ModelSetting)setting;
+
+
+                string graphFileFullPath = _def.TensorflowGraphPath + modelSetting.ModelName + ".pb";
+                _existsGraphFile = File.Exists(graphFileFullPath);
+                //Console.WriteLine(File.Exists(graphFileFullPath) ? "File exists." : "File does not exist.");
+                
+                //string fileName = System.IO.Path.GetFileName(fullPath);
+                string fileName = "None";
+                if (_existsGraphFile)
+                {
+                    fileName = modelSetting.ModelName;
+                }                
+                GraphFileName.Text = fileName;
             }
             catch (Exception e1)
             {
@@ -93,6 +112,7 @@ namespace DAGM.solver_ui
         private void ListBoxSolverSetting_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             UpdateInfoXML(LabelInfoSolverSetting, TextBlockSolverSetting, _def.modelSettingPath, ListBoxSolverSetting.SelectedIndex);
+
         }
 
         private void btnCreateNewSetting_Click(object sender, RoutedEventArgs e)
@@ -130,11 +150,17 @@ namespace DAGM.solver_ui
             _utils.makeFolder(_def.MainInspectSettingPath);
             
             ConstSetting();
+                        
+            if(!_existsGraphFile)
+            {
+                System.Windows.MessageBox.Show("Current setting doesn't have any graph files.");
+
+            }
             //if (TextBoxSaveSetting.Text == "" || TextBoxSaveSetting.Text == null)
             //{
             //    MessageBox.Show("Fill Inspect Setting Name");
             //}
-            //else
+            else
             {
                 try
                 {
@@ -143,6 +169,7 @@ namespace DAGM.solver_ui
                     //string path = _def.MainInspectSettingPath + TextBoxSaveSetting.Text + ".xml";
                     string path = _def.MainInspectSettingPath + "dagmSettings.xml";
                     _utils.SaveXML(_dagmSetting, path);
+
                     this.Close();
                 }
                 catch (Exception e1)

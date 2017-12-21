@@ -20,34 +20,28 @@
         <GroupBox x:Name="gbSolver" Header="Solver Settings" Grid.Column="0" Grid.ColumnSpan="2" Margin="5">
             <Grid Margin="5">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="20"/>
-                    <RowDefinition Height="20"/>
-                    <RowDefinition Height="20"/>
                     <RowDefinition Height="1*"/>
                     <RowDefinition Height="30"/>
                     <RowDefinition Height="1*"/>
                     <RowDefinition Height="50"/>
-                </Grid.RowDefinitions>
-                <RadioButton x:Name="rbBasic" Content="Basic" />
-                <RadioButton x:Name="rbSVM" Content="SVM" Grid.Row="1"/>
-                <RadioButton x:Name="rbCNN" Content="CNN" Grid.Row="2" />
-                <ListBox Name="ListBoxSolverSetting" Padding="3" Grid.Row="3" SelectionChanged="ListBoxSolverSetting_SelectionChanged"/>
+                </Grid.RowDefinitions>              
+                <ListBox Name="ListBoxSolverSetting" Padding="3" Grid.Row="0" SelectionChanged="ListBoxSolverSetting_SelectionChanged"/>
                 <Label x:Name="LabelInfoSolverSetting" Content="" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Row="4" Margin="3" VerticalContentAlignment="Center"/>
-                <ScrollViewer VerticalScrollBarVisibility="Visible" Grid.Row="5">
-                    <TextBlock x:Name="TextBlockSolverSetting" TextWrapping="Wrap" Grid.Row="5" Margin="3,0,3,3"/>
+                <ScrollViewer VerticalScrollBarVisibility="Visible" Grid.Row="2">
+                    <TextBlock x:Name="TextBlockSolverSetting" TextWrapping="Wrap" Margin="3,0,3,3"/>
                 </ScrollViewer>
-                <Button x:Name="btnCreateNewSetting" Content="Create New Setting" Grid.Row="6" FontSize="16" Margin="3" Click="btnCreateNewSetting_Click"/>
+                <Button x:Name="btnCreateNewSetting" Content="Create New Setting" Grid.Row="3" FontSize="16" Margin="3" Click="btnCreateNewSetting_Click"/>
             </Grid>
         </GroupBox>
-        <Grid Grid.Column="0" Grid.Row="3" Margin="5">
+        <Grid Grid.Column="0" Grid.Row="1" Margin="5">
             <Grid.RowDefinitions>
                 <RowDefinition Height="28"/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
-            <Label Content="Inspect Setting Name:" VerticalContentAlignment="Bottom"/>
-            <TextBox x:Name="TextBoxSaveSetting" Grid.Row="1" Margin="2" VerticalContentAlignment="Center"/>
+            <Label Content="Graph file name" VerticalContentAlignment="Bottom"/>
+            <TextBox x:Name="GraphFileName" Grid.Row="1" Margin="2" VerticalContentAlignment="Center" IsReadOnly="True"/>
         </Grid>
-        <Grid Grid.Column="3" Grid.Row="3" Margin="5">
+        <Grid Grid.Column="1" Grid.Row="1" Margin="5">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
                 <ColumnDefinition/>
