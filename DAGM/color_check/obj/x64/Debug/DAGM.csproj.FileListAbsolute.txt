@@ -54,10 +54,6 @@ D:\my_projects\git_local_server\DAGM\DAGM\color_check\bin\x64\Debug\dll\x86\Open
 D:\my_projects\git_local_server\DAGM\DAGM\color_check\bin\x64\Debug\dll\x64\OpenCvSharpExtern.dll
 D:\my_projects\git_local_server\DAGM\DAGM\color_check\bin\x64\Debug\dagm.exe
 D:\my_projects\git_local_server\DAGM\DAGM\color_check\bin\x64\Debug\dagm.pdb
-D:\my_projects\git_local_server\DAGM\DAGM\color_check\bin\x64\Debug\OpenCvSharp.Blob.dll
-D:\my_projects\git_local_server\DAGM\DAGM\color_check\bin\x64\Debug\OpenCvSharp.dll
-D:\my_projects\git_local_server\DAGM\DAGM\color_check\bin\x64\Debug\OpenCvSharp.Extensions.dll
-D:\my_projects\git_local_server\DAGM\DAGM\color_check\bin\x64\Debug\OpenCvSharp.UserInterface.dll
 D:\my_projects\git_local_server\DAGM\DAGM\color_check\bin\x64\Debug\OpenCvSharp.pdb
 D:\my_projects\git_local_server\DAGM\DAGM\color_check\bin\x64\Debug\OpenCvSharp.xml
 D:\my_projects\git_local_server\DAGM\DAGM\color_check\bin\x64\Debug\OpenCvSharp.Blob.pdb
@@ -96,3 +92,7 @@ D:\my_projects\git_local_server\DAGM\DAGM\color_check\obj\x64\Debug\DAGM.csproj.
 D:\my_projects\git_local_server\DAGM\DAGM\color_check\bin\x64\Debug\dll\x86\opencv_ffmpeg331.dll
 D:\my_projects\git_local_server\DAGM\DAGM\color_check\bin\x64\Debug\dll\x64\opencv_ffmpeg331_64.dll
 D:\my_projects\git_local_server\DAGM\DAGM\color_check\obj\x64\Debug\DAGM.csprojResolveAssemblyReference.cache
+D:\my_projects\git_local_server\DAGM\DAGM\color_check\bin\x64\Debug\OpenCvSharp.Blob.dll
+D:\my_projects\git_local_server\DAGM\DAGM\color_check\bin\x64\Debug\OpenCvSharp.dll
+D:\my_projects\git_local_server\DAGM\DAGM\color_check\bin\x64\Debug\OpenCvSharp.Extensions.dll
+D:\my_projects\git_local_server\DAGM\DAGM\color_check\bin\x64\Debug\OpenCvSharp.UserInterface.dll

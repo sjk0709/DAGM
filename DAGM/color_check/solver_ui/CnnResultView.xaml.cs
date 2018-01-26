@@ -63,15 +63,10 @@ namespace DAGM.solver_ui
             // parameters in CNN settings           
             int featureWidth = Convert.ToInt32(modelSetting.FeatureWidth);
             int featureHeight = Convert.ToInt32(modelSetting.FeatureHeight);
-            int width = image.Cols;
-            int height = image.Rows;
-            int nx = width/featureWidth;
-            int ny = height/featureHeight;            
-            int nAreas = nx * ny;
-
+ 
             // solver
             solver.CnnSolver cnn = new solver.CnnSolver();
-            solver.CnnResult cnnResult = cnn.Run(image, graphPath);
+            solver.CnnResult cnnResult = cnn.Run(featureWidth, featureHeight, image, graphPath);
             
             int classNo = cnnResult.ClassNo;
             int nDefect = cnnResult.nDefect;

@@ -26,7 +26,7 @@ namespace DAGM.solver
         public static extern void FreeConsole();
 
         [DllImport("Tensorflow/tensorflowJK.dll")]
-        public static extern IntPtr runCnnBlockC1(string graphPath, string resultImagePath, int width, int height, IntPtr pImage);
+        public static extern IntPtr runCnnBlockC1(string graphPath, string resultImagePath, int featureWidth, int featureHeight, int width, int height, IntPtr pImage);
 
         [DllImport("Tensorflow/tensorflowJK.dll")]
         public static extern int ReleaseMemory(IntPtr ptr);
@@ -41,7 +41,7 @@ namespace DAGM.solver
         }
 
 
-        public CnnResult Run(Mat image, string graphPath)
+        public CnnResult Run(int featureWidth, int featureHeight, Mat image, string graphPath)
         {
             //object setting;
             //Type type = typeof(DAGMsetting);
@@ -53,7 +53,7 @@ namespace DAGM.solver
             
             IntPtr inputPtr = image.Ptr();
             
-            IntPtr resultPtr = runCnnBlockC1(graphPath, _def.ResultImagePath, image.Cols, image.Rows, inputPtr);
+            IntPtr resultPtr = runCnnBlockC1(graphPath, _def.ResultImagePath, featureWidth, featureHeight, image.Cols, image.Rows, inputPtr);
 
             int[] results = new int[2];           // result is allocated
             Marshal.Copy(resultPtr, results, 0, 2);   // copy resultPtr to result             
