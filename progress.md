@@ -13,7 +13,7 @@ nn.MaxPool2d(kernel_size=3, stride=2, padding=1)
 
 ###### Result
 * Accuracy : 95~98%
-* optimal1 model이 현재 가장 좋은 성능을 보여주는것으로 나타남
+* optimal1 이 현재 가장 좋은 성능을 보여주는것으로 나타남
 
 
 ## Defect inspection by FCN with original label data
@@ -27,7 +27,7 @@ nn.MaxPool2d(kernel_size=3, stride=2, padding=1)
 #### DAGM3_fcn0_c10d10_128_SB
 ###### Result
 * 결과 매우 좋음
-* optimal1 model이 현재 가장 좋은 성능을 보여주는것으로 나타남
+* optimal1 이 현재 가장 좋은 성능을 보여주는것으로 나타남
 
 
 코드는 나중에~~
