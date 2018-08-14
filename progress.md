@@ -17,7 +17,7 @@ nn.MaxPool2d(kernel_size=3, stride=2, padding=1)
 
 
 ## Defect inspection by FCN with original label data
-#### DAGM3_fcn0_c10d10_128_SB
+#### DAGM2_fcn0_c10d10_128_SB
 ###### Result
 * 결과 좋음
 
