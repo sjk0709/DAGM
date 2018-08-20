@@ -18,7 +18,7 @@ nn.MaxPool2d(kernel_size=3, stride=2, padding=1)
 
 
 
-
+---
 #### cnn0
 ```python
 self.maxPool = nn.MaxPool2d(kernel_size=2, stride=2)  
