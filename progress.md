@@ -1,5 +1,6 @@
 
 ## Defect inspection by CNN with original label data
+---
 #### resnetJK0
 * feature size가 작으므로 첫 번째 layer인
 nn.Conv2d(1, 64, kernel_size=7, stride=2, padding=3, bias=False) 
@@ -60,7 +61,7 @@ fc(1024, 12)
 * optimal3 이 현재 가장 좋은 성능을 보여주는것으로 나타남
 
 
-#### DAGM2_cnn0_Conv12k8_32_12
+##### DAGM2_cnn0_Conv12k8_32_12
 conv(1, 128)
 conv(128, 128)
 
