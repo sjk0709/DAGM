@@ -11,7 +11,7 @@ nn.Conv2d(1, 64, kernel_size=7, stride=2, padding=3, bias=False)
 nn.MaxPool2d(kernel_size=3, stride=2, padding=1) 
 => nn.MaxPool2d(kernel_size=2, stride=2)
 
-##### DAGM2_resnetJK0_resnet152v1_32_12
+##### * DAGM2_resnetJK0_resnet152v1_32_12
 
 ###### Result
 * Accuracy : 95~98%
