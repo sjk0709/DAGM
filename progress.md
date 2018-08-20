@@ -2,6 +2,7 @@
 ## 1. Defect inspection by CNN with original label data
 
 ### DAGM2_resnetJK0_resnet152v1_32_12
+###### Structure
 
 ###### Result
 * Accuracy : 95~98%
