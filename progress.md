@@ -9,7 +9,7 @@
 
 #### DAGM2_cnn0_Conv12k4_32_12
 ###### Structure
-* conv(1, 64)
+* conv(1, 64) 
 conv(64, 64)
 
 * conv(64, 128)
