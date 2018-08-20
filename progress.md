@@ -1,13 +1,13 @@
 
 ## 1. Defect inspection by CNN with original label data
 
-#### DAGM2_resnetJK0_resnet152v1_32_12
+### DAGM2_resnetJK0_resnet152v1_32_12
 
 ###### Result
 * Accuracy : 95~98%
 * optimal1 이 현재 가장 좋은 성능을 보여주는것으로 나타남
 
-#### DAGM2_cnn0_Conv12k4_32_12
+### DAGM2_cnn0_Conv12k4_32_12
 ###### Structure
 * conv(1, 64) 
 * conv(64, 64)
@@ -30,7 +30,7 @@
 * optimal3 이 현재 가장 좋은 성능을 보여주는것으로 나타남
 
 
-#### DAGM2_cnn0_Conv12k8_32_12
+### DAGM2_cnn0_Conv12k8_32_12
 ###### Structure
 * conv(1, 128)
 * conv(128, 128)
@@ -61,14 +61,16 @@
 
 ---
 ## 2. Defect inspection by FCN with original label data
-#### DAGM2_fcn0_c10d10_128_SB
+### DAGM2_fcn0_c10d10_128_SB
+###### Structure
 ###### Result
 * 결과 좋음
 
 
 ---
 ## 3. Defect inspection by FCN with new label data
-#### DAGM3_fcn0_c10d10_128_SB
+### DAGM3_fcn0_c10d10_128_SB
+###### Structure
 ###### Result
 * 결과 매우 좋음
 * optimal1 이 현재 가장 좋은 성능을 보여주는것으로 나타남
