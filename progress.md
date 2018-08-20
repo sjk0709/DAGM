@@ -16,6 +16,20 @@ nn.MaxPool2d(kernel_size=3, stride=2, padding=1)
 * optimal1 이 현재 가장 좋은 성능을 보여주는것으로 나타남
 
 
+#### DAGM2_cnn0_Conv12k4_32_12
+###### cnn0_Conv12k4
+```python
+self.layer1 = self._make_layer(block, 16*k, layers[0], stride=1)
+self.layer2 = self._make_layer(block, 32*k, layers[1], stride=1)
+self.layer3 = self._make_layer(block, 64*k, layers[2], stride=1)
+```
+
+
+###### Result
+* Accuracy : 96~99% <- Very Good!!!!!!!!!!!!!!!!1
+* optimal3 이 현재 가장 좋은 성능을 보여주는것으로 나타남
+
+
 ## Defect inspection by FCN with original label data
 #### DAGM2_fcn0_c10d10_128_SB
 ###### Result
