@@ -16,19 +16,75 @@ nn.MaxPool2d(kernel_size=3, stride=2, padding=1)
 * optimal1 이 현재 가장 좋은 성능을 보여주는것으로 나타남
 
 
-#### DAGM2_cnn0_Conv12k4_32_12
-###### cnn0_Conv12k4
+
+
+#### cnn0
 ```python
+self.maxPool = nn.MaxPool2d(kernel_size=2, stride=2)  
+
 self.layer1 = self._make_layer(block, 16*k, layers[0], stride=1)
 self.layer2 = self._make_layer(block, 32*k, layers[1], stride=1)
 self.layer3 = self._make_layer(block, 64*k, layers[2], stride=1)
+
+h = int(input_size[1]/8)
+w = int(input_size[2]/8)
+self.fc1 = nn.Linear(64*k*h*w, 1024, bias=False)
+self.bn1 = nn.BatchNorm2d(1024)
+self.relu = nn.ReLU(inplace=True)
+
+self.fc2 = nn.Linear(1024, 1024, bias=False)
+self.bn2 = nn.BatchNorm2d(1024)
+
+self.fc3 = nn.Linear(1024, num_classes)
 ```
+##### DAGM2_cnn0_Conv12k4_32_12
+conv(1, 64)
+conv(64, 64)
+
+conv(64, 128)
+conv(128, 128)
+conv(128, 128)
+
+conv(128, 256)
+conv(256, 256)
+conv(256, 256)
+conv(256, 256)
+
+fc((in/8)*(in/8)*256, 1024) 
+fc(1024, 1024) 
+fc(1024, 12)
+
+###### Result
+* Accuracy : 96~99% <- Very Good!!!!!!!!!!!!!!!!
+* optimal3 이 현재 가장 좋은 성능을 보여주는것으로 나타남
+
+
+#### DAGM2_cnn0_Conv12k8_32_12
+conv(1, 128)
+conv(128, 128)
+
+conv(128, 256)
+conv(256, 256)
+conv(256, 256)
+
+conv(256, 512)
+conv(512, 512)
+conv(512, 512)
+conv(512, 512)
+
+fc((in/8)*(in/8)*512, 1024) 
+fc(1024, 1024) 
+fc(1024, 12)
+
+###### Result
+* Accuracy : 96~99% <- Very Good!!!!!!!!!!!!!!!!
+* optimal3 이 현재 가장 좋은 성능을 보여주는것으로 나타남
+
 
 
 ###### Result
-* Accuracy : 96~99% <- Very Good!!!!!!!!!!!!!!!!1
+* Accuracy : 96~99% <- Very Good!!!!!!!!!!!!!!!!
 * optimal3 이 현재 가장 좋은 성능을 보여주는것으로 나타남
-
 
 ## Defect inspection by FCN with original label data
 #### DAGM2_fcn0_c10d10_128_SB
