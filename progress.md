@@ -10,9 +10,9 @@
 
 ### DAGM2_cnn0_Conv12k4_32_12
 ###### Structure
-* conv(1, 64) / conv(64, 64) /
-* conv(64, 128) / conv(128, 128) / conv(128, 128)
-* conv(128, 256) / conv(256, 256) / conv(256, 256) / conv(256, 256)
+* conv(1, 64) - 2 layer
+* conv(64, 128) - 3 layer
+* conv(128, 256) - 4 layer
 
 * fc((in/8)*(in/8)*256, 1024) 
 * fc(1024, 1024) 
@@ -25,11 +25,11 @@
 
 ### DAGM2_cnn0_Conv12k8_32_12
 ###### Structure
-* conv(1, 128) / conv(128, 128)
+* conv(1, 128) - 2 layer
 
-* conv(128, 256) / conv(256, 256) / conv(256, 256)
+* conv(128, 256) - 3 layer
 
-* conv(256, 512) / conv(512, 512) / conv(512, 512) / conv(512, 512)
+* conv(256, 512) - 4 layer
 
 * fc((in/8)*(in/8)*512, 1024) 
 * fc(1024, 1024) 
