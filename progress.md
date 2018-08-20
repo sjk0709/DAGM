@@ -1,7 +1,7 @@
 
 ## Defect inspection by CNN with original label data
 ---
-#### resnetJK0
+#### resnetJK0.py
 * feature size가 작으므로 첫 번째 layer인
 nn.Conv2d(1, 64, kernel_size=7, stride=2, padding=3, bias=False) 
 의 kernel_size와 padding을 수정하였다.
@@ -20,7 +20,7 @@ nn.MaxPool2d(kernel_size=3, stride=2, padding=1)
 
 
 ---
-#### cnn0
+#### cnn0.py
 ```python
 self.maxPool = nn.MaxPool2d(kernel_size=2, stride=2)  
 
@@ -88,13 +88,16 @@ fc(1024, 12)
 * Accuracy : 96~99% <- Very Good!!!!!!!!!!!!!!!!
 * optimal3 이 현재 가장 좋은 성능을 보여주는것으로 나타남
 
+---
+---
 ## Defect inspection by FCN with original label data
 #### DAGM2_fcn0_c10d10_128_SB
 ###### Result
 * 결과 좋음
 
 
-
+---
+---
 ## Defect inspection by FCN with new label data
 #### DAGM3_fcn0_c10d10_128_SB
 ###### Result
