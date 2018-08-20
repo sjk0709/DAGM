@@ -1,5 +1,5 @@
 
-## 1.Defect inspection by CNN with original label data
+## 1. Defect inspection by CNN with original label data
 ---
 #### resnetJK0.py
 * feature size가 작으므로 첫 번째 layer인
@@ -90,7 +90,7 @@ fc(1024, 12)
 
 ---
 ---
-## 2.Defect inspection by FCN with original label data
+## 2. Defect inspection by FCN with original label data
 #### DAGM2_fcn0_c10d10_128_SB
 ###### Result
 * 결과 좋음
@@ -98,7 +98,7 @@ fc(1024, 12)
 
 ---
 ---
-## 3.Defect inspection by FCN with new label data
+## 3. Defect inspection by FCN with new label data
 #### DAGM3_fcn0_c10d10_128_SB
 ###### Result
 * 결과 매우 좋음
