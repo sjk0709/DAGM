@@ -39,13 +39,6 @@
 * Accuracy : 96~99% <- Very Good!!!!!!!!!!!!!!!!
 * optimal3 이 현재 가장 좋은 성능을 보여주는것으로 나타남
 
-
-
-###### Result
-* Accuracy : 96~99% <- Very Good!!!!!!!!!!!!!!!!
-* optimal3 이 현재 가장 좋은 성능을 보여주는것으로 나타남
-
-
 ---
 ## 2. Defect inspection by FCN with original label data
 ### DAGM2_fcn0_c10d10_128_SB
