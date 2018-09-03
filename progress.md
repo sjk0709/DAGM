@@ -77,6 +77,7 @@
 
 코드는 나중에~~
 
+## Network file 설명
 
 ---
 #### resnetJK0.py
