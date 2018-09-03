@@ -78,8 +78,6 @@
 코드는 나중에~~
 
 ## Network file 설명
-
----
 #### resnetJK0.py
 * feature size가 작으므로 첫 번째 layer인
 nn.Conv2d(1, 64, kernel_size=7, stride=2, padding=3, bias=False) 
