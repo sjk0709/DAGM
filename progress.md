@@ -1,6 +1,20 @@
 
 ## 1. Defect inspection by CNN with original label data
 
+### DAGM2_resnetJK0_resnet34v1_32_12
+###### Structure
+
+###### Result
+* Accuracy : 97~98%
+* optimal0 이 현재 가장 좋은 성능을 보여주는것으로 나타남
+
+### DAGM2_resnetJK0_resnet50v1_32_12
+###### Structure
+
+###### Result
+* Accuracy : 97~98%
+* optimal0 이 현재 가장 좋은 성능을 보여주는것으로 나타남
+
 ### DAGM2_resnetJK0_resnet152v1_32_12
 ###### Structure
 
@@ -38,6 +52,11 @@
 ###### Result
 * Accuracy : 97~98% <- Very Good!!!!!!!!!!!!!!!!
 * optimal3 이 현재 가장 좋은 성능을 보여주는것으로 나타남
+
+
+### Conclusion
+* Resnet : resnet34v1, resnet50v1 등 layer가 더 낮을 때 좋은 성능을 보여줌
+* Conv12k : Conv12k4와 Conv12k8 에서 둘 다 비슷하나 Conv12k4가 역시 더 안정적인 성능을 보여줌
 
 ---
 ## 2. Defect inspection by FCN with original label data
