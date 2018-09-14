@@ -104,6 +104,20 @@
 * 결과 매우 좋음
 * optimal1 이 현재 가장 좋은 성능을 보여주는것으로 나타남
 
+## 4. Defect inspection by FCN
+* DAGM2_fcn0_c10d10_128_XX 으로 새로운 Label 생성   => Label_A1
+* Label_A1 을 이용하여 Model 생성                   => DAGM_A1_fcn0_c10d10_128_XX
+* DAGM_A1_fcn0_c10d10_128_XX 으로 새로운 Label 생성 => Label_A2
+* Label_A2 을 이용하여 Model 생성                   => DAGM_A2_fcn0_c10d10_128_XX
+
+
+###### Result
+
+
+
+
+* 결과 매우 좋음
+* optimal1 이 현재 가장 좋은 성능을 보여주는것으로 나타남
 
 코드는 나중에~~
 
